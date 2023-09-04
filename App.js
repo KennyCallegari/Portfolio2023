@@ -8,12 +8,12 @@ import * as SplashScreen from "expo-splash-screen"
 
 SplashScreen.preventAutoHideAsync()
 
-function IgniteApp() {
+function PortfolioExpo2023() {
   return <App hideSplashScreen={SplashScreen.hideAsync} />
 }
 
 if (Platform.OS !== "web") {
-  registerRootComponent(IgniteApp)
+  registerRootComponent(PortfolioExpo2023)
 }
 
-export default IgniteApp
+export default PortfolioExpo2023
