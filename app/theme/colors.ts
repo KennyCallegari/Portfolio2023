@@ -11,24 +11,42 @@ const palette = {
   neutral800: "#191015",
   neutral900: "#000000",
 
-  primary100: "#F4E0D9",
-  primary200: "#E8C1B4",
-  primary300: "#DDA28E",
-  primary400: "#D28468",
-  primary500: "#C76542",
-  primary600: "#A54F31",
+  // GREEN
+  primary200: "#D1F299",
+  primary300: "#B7D58A",
+  primary400: "#9DB87B",
+  primary500: "#87B36A",
+  primary600: "#5F8E62",
+  primary700: "#446954",
+  primary800: "#34453F",
 
-  secondary100: "#DCDDE9",
-  secondary200: "#BCC0D6",
-  secondary300: "#9196B9",
-  secondary400: "#626894",
-  secondary500: "#41476E",
+  // PINK
+  secondary200: "#ffeaea",
+  secondary300: "#ffd6d6",
+  secondary400: '#f2d3de', // lottie
+  secondary500: "#F7A7A7",
+  secondary800: "#ad7575",
 
-  accent100: "#FFEED4",
-  accent200: "#FFE1B2",
-  accent300: "#FDD495",
-  accent400: "#FBC878",
-  accent500: "#FFBB50",
+  // GOLDEN
+  accent100: "#FFF0CC",
+  accent200: "#FFDC89",
+  accent400: "#FFCE5C",
+  accent500: "#FFC745",
+  accent700: '#e0b055', // lottie
+
+  blue200:'#effdff',
+  blue300: '#dffaff',
+  blue400: '#ADD8E6',
+  blue500: '#99BDD9',
+  blue700: '#227195',
+  blue900: '#063843',
+
+  lavender200: '#E6E6FA',
+  lavender300: '#CEC7E0',
+  lavender400: '#B1ADD8',
+  lavender500: '#B8A8C4',
+  lavender600: '#A48AA8',
+  lavender700: '#7C79A1',
 
   angry100: "#F2D6CD",
   angry500: "#C03403",

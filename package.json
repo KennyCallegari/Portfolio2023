@@ -10,6 +10,7 @@
     "compile": "tsc --noEmit -p . --pretty",
     "format": "prettier --write \"app/**/*.{js,jsx,json,md,ts,tsx}\"",
     "lint": "eslint index.js App.js app test --fix --ext .js,.ts,.tsx && npm run format",
+    "ts-lint": "tsc --noEmit & eslint ./app --ext .js,.jsx,.ts,.tsx",
     "patch": "patch-package",
     "test": "jest",
     "test:watch": "jest --watch",
@@ -22,10 +23,12 @@
     "release:android": "cd android && rm -rf app/src/main/res/drawable-* && ./gradlew assembleRelease && cd - && echo 'APK generated in ./android/app/build/outputs/apk/release/app-release.apk'",
     "clean": "npx react-native-clean-project",
     "clean-all": "npx react-native clean-project-auto",
+    "clean-dependencies": "rm -rf node_modules; rm -f yarn.lock; yarn install; cd ios; rm -f Podfile.lock; pod install --repo-update; cd ..; cd android; ./gradlew clean; cd ..",
     "expo:start": "expo start",
     "expo:android": "expo start --android",
     "expo:ios": "expo start --ios",
-    "expo:web": "expo start --web"
+    "expo:web": "expo start --web",
+    "expo:clean": "expo start -c"
   },
   "overrides": {
     "react-error-overlay": "6.0.9"
@@ -52,6 +55,7 @@
     "expo-splash-screen": "~0.18.1",
     "expo-status-bar": "~1.4.4",
     "i18n-js": "3.9.2",
+    "lottie-react-native": "5.1.4",
     "mobx": "6.6.0",
     "mobx-react-lite": "3.4.0",
     "mobx-state-tree": "5.1.5",
@@ -108,6 +112,7 @@
     "query-string": "^7.0.1",
     "react-devtools-core": "4.24.7",
     "react-dom": "18.2.0",
+    "react-native-clean-project": "^4.0.1",
     "react-native-web": "~0.18.7",
     "react-test-renderer": "18.2.0",
     "reactotron-core-client": "^2.8.10",
@@ -169,6 +174,33 @@
       "it": false
     },
     "rules": {
+      "max-len": [
+        "error",
+        {
+          "code": 120,
+          "tabWidth": 2,
+          "ignoreComments": true,
+          "ignoreTrailingComments": true
+        }
+      ],
+      "object-curly-spacing": 1,
+      "object-curly-newline": [
+        "error",
+        {
+          "consistent": true
+        }
+      ],
+      "operator-linebreak": [
+        "error",
+        "before",
+        {
+          "overrides": {
+            "&&": "after",
+            "||": "after",
+            "=": "after"
+          }
+        }
+      ],
       "@typescript-eslint/ban-ts-ignore": 0,
       "@typescript-eslint/ban-ts-comment": 0,
       "@typescript-eslint/explicit-function-return-type": 0,
