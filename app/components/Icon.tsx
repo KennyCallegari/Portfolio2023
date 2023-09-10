@@ -101,6 +101,7 @@ export const iconRegistry = {
   lock: require("../../assets/icons/lock.png"),
   menu: require("../../assets/icons/menu.png"),
   more: require("../../assets/icons/more.png"),
+  next: require("../../assets/icons/next.png"),
   pin: require("../../assets/icons/pin.png"),
   podcast: require("../../assets/icons/podcast.png"),
   settings: require("../../assets/icons/settings.png"),

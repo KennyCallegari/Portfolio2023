@@ -1,11 +1,9 @@
 import React from "react"
-import { Image, ImageProps, ImageStyle, StyleProp, TextStyle, View, ViewStyle } from "react-native"
+import { ImageProps, ImageStyle, StyleProp, TextStyle, View, ViewStyle } from "react-native"
 import { translate } from "../i18n"
 import { spacing } from "../theme"
 import { Button, ButtonProps } from "./Button"
 import { Text, TextProps } from "./Text"
-
-const sadFace = require("../../assets/images/sad-face.png")
 
 interface EmptyStateProps {
   /**
@@ -103,7 +101,6 @@ interface EmptyStateProps {
 
 const EmptyStatePresets = {
   generic: {
-    imageSource: sadFace,
     heading: translate("emptyStateComponent.generic.heading"),
     content: translate("emptyStateComponent.generic.content"),
     button: translate("emptyStateComponent.generic.button"),
@@ -129,54 +126,40 @@ export function EmptyState(props: EmptyStateProps) {
     heading = preset?.heading,
     headingTx,
     headingTxOptions,
-    imageSource = preset?.imageSource,
     style: $containerStyleOverride,
     buttonStyle: $buttonStyleOverride,
     buttonTextStyle: $buttonTextStyleOverride,
     contentStyle: $contentStyleOverride,
     headingStyle: $headingStyleOverride,
-    imageStyle: $imageStyleOverride,
     ButtonProps,
     ContentTextProps,
     HeadingTextProps,
-    ImageProps,
   } = props
 
-  const isImagePresent = !!imageSource
   const isHeadingPresent = !!(heading || headingTx)
   const isContentPresent = !!(content || contentTx)
   const isButtonPresent = !!(button || buttonTx)
 
   const $containerStyles = [$containerStyleOverride]
-  const $imageStyles = [
-    $image,
-    (isHeadingPresent || isContentPresent || isButtonPresent) && { marginBottom: spacing.xxxs },
-    $imageStyleOverride,
-    ImageProps?.style,
-  ]
   const $headingStyles = [
     $heading,
-    isImagePresent && { marginTop: spacing.xxxs },
     (isContentPresent || isButtonPresent) && { marginBottom: spacing.xxxs },
     $headingStyleOverride,
     HeadingTextProps?.style,
   ]
   const $contentStyles = [
     $content,
-    (isImagePresent || isHeadingPresent) && { marginTop: spacing.xxxs },
     isButtonPresent && { marginBottom: spacing.xxxs },
     $contentStyleOverride,
     ContentTextProps?.style,
   ]
   const $buttonStyles = [
-    (isImagePresent || isHeadingPresent || isContentPresent) && { marginTop: spacing.xl },
     $buttonStyleOverride,
     ButtonProps?.style,
   ]
 
   return (
     <View style={$containerStyles}>
-      {isImagePresent && <Image source={imageSource} {...ImageProps} style={$imageStyles} />}
 
       {isHeadingPresent && (
         <Text
@@ -214,6 +197,5 @@ export function EmptyState(props: EmptyStateProps) {
   )
 }
 
-const $image: ImageStyle = { alignSelf: "center" }
 const $heading: TextStyle = { textAlign: "center", paddingHorizontal: spacing.lg }
 const $content: TextStyle = { textAlign: "center", paddingHorizontal: spacing.lg }

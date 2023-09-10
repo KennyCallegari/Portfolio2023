@@ -1,0 +1,26 @@
+name: Test ESLint & Typesript
+
+on:
+  - pull_request
+
+jobs:
+  build:
+    name: Run ESLint & Typescript test
+    runs-on: ubuntu-latest
+    steps:
+      # Says Hello
+      - run: echo "🎉 Bien joué pour cette PR ! Prends toi une petite pause"
+      
+      # Check out the repository
+      - uses: actions/checkout@v1
+
+      # Install Node.js
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 18
+
+      # Install your dependencies
+      - run: yarn install
+
+      # Run ESLint + Ts
+      - run: yarn ts-lint
