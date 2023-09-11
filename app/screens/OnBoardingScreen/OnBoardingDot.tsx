@@ -1,10 +1,8 @@
 import React, { FC } from "react"
 import { ViewStyle, useWindowDimensions } from "react-native"
 import { footerColors } from "./OnBoardingData"
-import 
-  Animated,
-  { Extrapolate, SharedValue, interpolate, interpolateColor, useAnimatedStyle }
-from "react-native-reanimated"
+import Animated,
+{ Extrapolate, SharedValue, interpolate, interpolateColor, useAnimatedStyle } from "react-native-reanimated"
 import { spacing } from "app/theme"
 
 

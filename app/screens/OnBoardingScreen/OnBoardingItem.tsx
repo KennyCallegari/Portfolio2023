@@ -5,12 +5,17 @@ import { IOnBoardingData } from "./OnBoardingData"
 import LottieView from "lottie-react-native"
 import Animated, { Extrapolate, SharedValue, interpolate, useAnimatedStyle } from "react-native-reanimated"
 import { spacing } from "app/theme"
+import I18n from "i18n-js"
+import { translate } from 'app/i18n';
+import { ChangeLanguageButton } from "./ChangeLanguageButton"
+
 
 
 interface IOnBoardingItemProps {
   item: IOnBoardingData,
   index: number,
   x: SharedValue<number>,
+  setLocale: (_: string) => void,
 }
 
 export const OnBoardingItem: FC<IOnBoardingItemProps> = function OnBoardingItem(props: IOnBoardingItemProps) {
@@ -54,6 +59,11 @@ export const OnBoardingItem: FC<IOnBoardingItemProps> = function OnBoardingItem(
     height: SCREEN_WIDTH * 0.9
   }
 
+  const changeLocale = (locale: string) => {
+    I18n.locale = locale
+    props.setLocale(locale)
+  }
+
   return (
     <View style={[$container, { width: SCREEN_WIDTH }]}>
       <View style={$circleContainer}>
@@ -62,7 +72,8 @@ export const OnBoardingItem: FC<IOnBoardingItemProps> = function OnBoardingItem(
       <Animated.View style={$lottieAnimation}>
         <LottieView source={props.item.animation} autoPlay loop speed={0.65} style={$lottie}  />
       </Animated.View>
-      <Text preset="bold" size="xxl" style={$text(props.item.textColor)}>{props.item.text}</Text>
+      <Text preset="bold" size="xxl" style={$text(props.item.textColor)}>{translate(props.item.text)}</Text>
+      {props.item.showButton && <ChangeLanguageButton onPressLanguage={changeLocale} />}
     </View>
   )
 }

@@ -7,7 +7,7 @@ const en = {
   onBoardingScreen: {
     firstScreen: "Bienvenue dans mon portfolio !",
     secondScreen: "Je suis Kenny Callegari et je suis développeur mobile",
-    thirdScreen: "Dans quelle langue voulez l'app ?",
+    thirdScreen: "Choisissez la langue de l'application",
     fourthScreen: "Ok, tout est prêt",
     button: "C'est parti !"
   },
