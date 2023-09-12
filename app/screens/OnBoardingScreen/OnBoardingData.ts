@@ -15,7 +15,14 @@ export const footerColors = [
   colors.palette.secondary400,
   colors.palette.accent700,
   colors.palette.blue800,
-  colors.palette.blue900
+  colors.palette.lavender600
+];
+
+export const footerShadowsColors = [
+  colors.palette.lavender700,
+  colors.palette.accent900,
+  colors.palette.blue900,
+  colors.palette.lavender700
 ];
 
 const data: IOnBoardingData[] = [
@@ -44,7 +51,7 @@ const data: IOnBoardingData[] = [
     id: 4,
     animation: require('../../../assets/animations/rocketship.json'),
     text:'onBoardingScreen.fourthScreen',
-    textColor: colors.palette.blue900,
+    textColor: colors.palette.lavender600,
     backgroundColor: colors.palette.lavender200,
   }
 ]

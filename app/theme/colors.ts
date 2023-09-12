@@ -23,16 +23,20 @@ const palette = {
   // PINK
   secondary200: "#ffeaea",
   secondary300: "#ffd6d6",
-  secondary400: '#f2d3de', // lottie
-  secondary500: "#F7A7A7",
-  secondary800: "#ad7575",
+  secondary400: '#F6CDDA', // lottie
+  secondary500: "#F4C2D2",
+  secondary600: "#E28DA8",
+  secondary800: "#8A294B",
 
   // GOLDEN
   accent100: "#FFF0CC",
   accent200: "#FFDC89",
   accent400: "#FFCE5C",
   accent500: "#FFC745",
-  accent700: '#e0b055', // lottie
+  accent600: '#ECB86F',
+  accent700: '#E7A74B', // lottie
+  accent800: '#CF9526',
+  accent900: '#B17C19',
 
   blue200:'#effdff',
   blue300: '#dffaff',
@@ -48,7 +52,7 @@ const palette = {
   lavender400: '#B1ADD8',
   lavender500: '#B8A8C4',
   lavender600: '#A48AA8',
-  lavender700: '#7C79A1',
+  lavender700: '#4E4C6C',
 
   angry100: "#F2D6CD",
   angry500: "#C03403",

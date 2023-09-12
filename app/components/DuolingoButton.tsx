@@ -1,11 +1,12 @@
 import { colors } from "app/theme";
 import React, { useState } from "react";
-import { View, ViewStyle, Pressable } from "react-native";
+import { ViewStyle, Pressable } from "react-native";
+import Animated from "react-native-reanimated";
 
 interface IDuolingoButtonProps {
   children: React.ReactNode,
-  style: ViewStyle,
   onPress: () => void,
+  style?: ViewStyle,
   primaryColor?: string,
   shadowColor?: string,
   shadowDepth?: number,
@@ -14,7 +15,6 @@ interface IDuolingoButtonProps {
 export function DuolingoButton(props: IDuolingoButtonProps) {
   const {
     style,
-    primaryColor = colors.palette.blue800,
     shadowColor = colors.palette.blue900,
     onPress,
     shadowDepth = 5,
@@ -38,29 +38,23 @@ export function DuolingoButton(props: IDuolingoButtonProps) {
   }
 
   const $pressed = {
+    backgroundColor: 'transparent', // remove background color if children has one
     paddingTop: shadowDepth
   }
 
-  const $inner = {
-    backgroundColor: primaryColor,
+  const $button: ViewStyle = {
+    alignItems: "center",
+    alignSelf: "center",
     borderRadius: 60,
-    paddingVertical: 12,
-    paddingHorizontal: 12
   }
+  
 
   return (
-    <Pressable onPressIn={onPressIn} onPressOut={onPressOut}
-      style={[$button, isPressed ? $pressed : $unpressed, style]}>
-      <View style={$inner}>
+    <Pressable onPressIn={onPressIn} onPressOut={onPressOut}>
+      <Animated.View style={[$button, style, isPressed ? $pressed : $unpressed]}>
         {children}
-      </View>
+      </Animated.View>
     </Pressable>
   );
-}
-
-const $button: ViewStyle = {
-  alignItems: "center",
-  alignSelf: "center",
-  borderRadius: 60
 }
 

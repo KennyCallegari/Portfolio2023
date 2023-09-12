@@ -1,12 +1,10 @@
 import React, { FC } from "react"
-import { TextStyle, ViewStyle, useWindowDimensions,  ImageStyle, TouchableWithoutFeedback } from "react-native"
-import { footerColors } from "./OnBoardingData"
-import 
-  Animated,
-  { SharedValue, interpolateColor, useAnimatedStyle, withSpring, withTiming } 
-from "react-native-reanimated"
+import { TextStyle, ViewStyle, useWindowDimensions,  ImageStyle } from "react-native"
+import Animated,
+{ SharedValue, interpolateColor, useAnimatedStyle, withSpring, withTiming } from "react-native-reanimated"
 import { translate } from "app/i18n"
-import { spacing } from "app/theme"
+import { DuolingoButton } from "app/components"
+import { footerColors, footerShadowsColors } from "./OnBoardingData"
 
 
 interface IOnBoardingButtonProps {
@@ -49,6 +47,16 @@ export const OnBoardingButton: FC<IOnBoardingButtonProps> = function OnBoardingB
     return { backgroundColor }
   })
 
+  const $animatedShadowColor = useAnimatedStyle(() => {
+    const backgroundColor = interpolateColor(
+      props.x.value,
+      [0, SCREEN_WIDTH, 2 * SCREEN_WIDTH, 3 * SCREEN_WIDTH],
+      footerShadowsColors,
+    )
+
+    return { backgroundColor }
+  })
+
   const $animatedText = useAnimatedStyle(() => {
     const isLastScreen = props.flatListIndex.value === props.dataLength - 1;
 
@@ -68,24 +76,20 @@ export const OnBoardingButton: FC<IOnBoardingButtonProps> = function OnBoardingB
   }
   
   return (
-    <TouchableWithoutFeedback onPress={onPress}>
-      <Animated.View style={[$container, $animatedColor, $animatedButton]}>
+    <DuolingoButton onPress={onPress} style={$animatedShadowColor}>
+      <Animated.View style={[$inner, $animatedColor, $animatedButton]}>
         <Animated.Text style={[$text, $animatedText]}>{translate('onBoardingScreen.button')}</Animated.Text>
         <Animated.Image source={require("../../../assets/icons/next.png")} style={[$arrow, $animatedArrow]} />
       </Animated.View>
-    </TouchableWithoutFeedback>
+    </DuolingoButton>
   )
 }
 
-const $container: ViewStyle = {
-  backgroundColor: 'black',
-  padding: spacing.sm,
+const $inner: ViewStyle = {
   borderRadius: 100,
   justifyContent: 'center',
   alignItems: 'center',
   overflow: 'hidden',
-  width: 60,
-  height: 60,
 }
 
 const $arrow: ImageStyle = {

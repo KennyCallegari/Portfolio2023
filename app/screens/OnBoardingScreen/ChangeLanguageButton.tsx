@@ -13,6 +13,7 @@ import Animated,
   withTiming 
 } from "react-native-reanimated"
 import { AnimatedTouchable, DuolingoButton } from "app/components"
+import { colors } from "app/theme"
 
 
 interface IChangeLanguageButtonProps {
@@ -105,18 +106,20 @@ export const ChangeLanguageButton: FC<IChangeLanguageButtonProps> = function Cha
       </AnimatedTouchable>
 
       <DuolingoButton style={$duolingoButton} onPress={toggleMenu}>
-        {isOpened
-          ? (
-            <Animated.View style={$buttonIcon}>
-              <AntDesign name="close" size={46} color="white" />
-            </Animated.View>
-          )
-          : (
-            <Animated.View style={$buttonIcon}>
-              <MaterialCommunityIcons name="translate" size={46} color="white" />
-            </Animated.View>
-          )
-        }
+        <View style={$innerDuolingoButton}>
+          {isOpened
+            ? (
+              <Animated.View style={$buttonIcon}>
+                <AntDesign name="close" size={46} color="white" />
+              </Animated.View>
+            )
+            : (
+              <Animated.View style={$buttonIcon}>
+                <MaterialCommunityIcons name="translate" size={46} color="white" />
+              </Animated.View>
+            )
+          }
+        </View>
       </DuolingoButton>
     </View>
   )
@@ -131,6 +134,13 @@ const $container: ViewStyle = {
 const $duolingoButton: ViewStyle = {
   position: 'absolute',
   bottom: 0,
+}
+
+const $innerDuolingoButton = {
+  backgroundColor: colors.palette.blue800,
+  borderRadius: 60,
+  paddingVertical: 12,
+  paddingHorizontal: 12
 }
 
 const $button: ViewStyle = {
