@@ -69,9 +69,9 @@ export const OnBoardingItem: FC<IOnBoardingItemProps> = function OnBoardingItem(
       <View style={$circleContainer}>
         <Animated.View style={[$circle, $circleAnimation]} />
       </View>
-      <Animated.View style={$lottieAnimation}>
+      {props.item.animation && <Animated.View style={$lottieAnimation}>
         <LottieView source={props.item.animation} autoPlay loop speed={0.65} style={$lottie}  />
-      </Animated.View>
+      </Animated.View>}
       <Text preset="bold" size="xxl" style={$text(props.item.textColor)}>{translate(props.item.text)}</Text>
       {props.item.showButton && <ChangeLanguageButton onPressLanguage={changeLocale} />}
     </View>

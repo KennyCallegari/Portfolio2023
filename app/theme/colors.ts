@@ -38,7 +38,9 @@ const palette = {
   blue300: '#dffaff',
   blue400: '#ADD8E6',
   blue500: '#99BDD9',
+  blue600: '#227195',
   blue700: '#227195',
+  blue800: '#008199',
   blue900: '#063843',
 
   lavender200: '#E6E6FA',

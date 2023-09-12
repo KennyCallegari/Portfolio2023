@@ -4,7 +4,7 @@ import { TxKeyPath } from 'app/i18n';
 
 export interface IOnBoardingData {
   id: number,
-  animation: AnimationObject,
+  animation?: AnimationObject,
   text: TxKeyPath,
   textColor: string,
   backgroundColor: string,
@@ -14,7 +14,7 @@ export interface IOnBoardingData {
 export const footerColors = [
   colors.palette.secondary400,
   colors.palette.accent700,
-  colors.palette.blue700,
+  colors.palette.blue800,
   colors.palette.blue900
 ];
 
@@ -35,9 +35,8 @@ const data: IOnBoardingData[] = [
   },
   {
     id: 3,
-    animation: require('../../../assets/animations/world.json'),
     text: 'onBoardingScreen.thirdScreen',
-    textColor: colors.palette.blue700,
+    textColor: colors.palette.blue800,
     backgroundColor: colors.palette.blue300,
     showButton: true,
   },
