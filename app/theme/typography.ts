@@ -3,29 +3,29 @@
 
 import { Platform } from "react-native"
 import {
-  SpaceGrotesk_300Light as spaceGroteskLight,
-  SpaceGrotesk_400Regular as spaceGroteskRegular,
-  SpaceGrotesk_500Medium as spaceGroteskMedium,
-  SpaceGrotesk_600SemiBold as spaceGroteskSemiBold,
-  SpaceGrotesk_700Bold as spaceGroteskBold,
-} from "@expo-google-fonts/space-grotesk"
+  Rubik_300Light as rubikLight,
+  Rubik_400Regular as rubikRegular,
+  Rubik_500Medium as rubikMedium,
+  Rubik_600SemiBold as rubikSemiBold,
+  Rubik_700Bold as rubikBold,
+} from "@expo-google-fonts/rubik"
 
 export const customFontsToLoad = {
-  spaceGroteskLight,
-  spaceGroteskRegular,
-  spaceGroteskMedium,
-  spaceGroteskSemiBold,
-  spaceGroteskBold,
+  rubikLight,
+  rubikRegular,
+  rubikMedium,
+  rubikSemiBold,
+  rubikBold,
 }
 
 const fonts = {
-  spaceGrotesk: {
+  rubik: {
     // Cross-platform Google font.
-    light: "spaceGroteskLight",
-    normal: "spaceGroteskRegular",
-    medium: "spaceGroteskMedium",
-    semiBold: "spaceGroteskSemiBold",
-    bold: "spaceGroteskBold",
+    light: "rubikLight",
+    normal: "rubikRegular",
+    medium: "rubikMedium",
+    semiBold: "rubikSemiBold",
+    bold: "rubikBold",
   },
   helveticaNeue: {
     // iOS only font.
@@ -59,7 +59,7 @@ export const typography = {
   /**
    * The primary font. Used in most places.
    */
-  primary: fonts.spaceGrotesk,
+  primary: fonts.rubik,
   /**
    * An alternate font used for perhaps titles and stuff.
    */
