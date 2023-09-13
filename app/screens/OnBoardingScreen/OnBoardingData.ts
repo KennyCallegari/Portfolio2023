@@ -4,18 +4,25 @@ import { TxKeyPath } from 'app/i18n';
 
 export interface IOnBoardingData {
   id: number,
-  animation: AnimationObject,
+  animation?: AnimationObject,
   text: TxKeyPath,
   textColor: string,
   backgroundColor: string,
-  showButton?: boolean,
+  showTranslationModule?: boolean,
 }
 
 export const footerColors = [
   colors.palette.secondary400,
   colors.palette.accent700,
-  colors.palette.blue700,
-  colors.palette.blue900
+  colors.palette.blue800,
+  colors.palette.lavender600
+];
+
+export const footerShadowsColors = [
+  colors.palette.lavender700,
+  colors.palette.accent900,
+  colors.palette.blue900,
+  colors.palette.lavender700
 ];
 
 const data: IOnBoardingData[] = [
@@ -35,17 +42,16 @@ const data: IOnBoardingData[] = [
   },
   {
     id: 3,
-    animation: require('../../../assets/animations/world.json'),
     text: 'onBoardingScreen.thirdScreen',
-    textColor: colors.palette.blue700,
+    textColor: colors.palette.blue800,
     backgroundColor: colors.palette.blue300,
-    showButton: true,
+    showTranslationModule: true,
   },
   {
     id: 4,
     animation: require('../../../assets/animations/rocketship.json'),
     text:'onBoardingScreen.fourthScreen',
-    textColor: colors.palette.blue900,
+    textColor: colors.palette.lavender600,
     backgroundColor: colors.palette.lavender200,
   }
 ]

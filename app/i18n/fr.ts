@@ -1,15 +1,9 @@
 const en = {
+  // ------ COMMON ------
   common: {
     ok: "OK!",
     cancel: "Annuler",
     back: "Retour",
-  },
-  onBoardingScreen: {
-    firstScreen: "Bienvenue dans mon portfolio !",
-    secondScreen: "Je suis Kenny Callegari et je suis développeur mobile",
-    thirdScreen: "Choisissez la langue de l'application",
-    fourthScreen: "Ok, tout est prêt",
-    button: "C'est parti !"
   },
   errorScreen: {
     title: "Quelque chose ne va pas !",
@@ -23,6 +17,19 @@ const en = {
       button: "On recommence",
     },
   },
+  // ------ ONBOARDING ------
+  onBoardingScreen: {
+    firstScreen: "Bienvenue dans mon portfolio !",
+    secondScreen: "Je suis Kenny Callegari et je suis développeur mobile",
+    thirdScreen: "Vous pouvez choisir la langue de l'app ici",
+    fourthScreen: "Ok, tout est prêt",
+    button: "C'est parti !",
+    translationCTA: "APPUYER ICI"
+  },
+  // ------ MAIN NAVIGATOR ------
+  mainNavigator: {
+    projectsTab: 'Projets'
+  }
 }
 
 export default en

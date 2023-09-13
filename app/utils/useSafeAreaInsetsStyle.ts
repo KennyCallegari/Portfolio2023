@@ -35,7 +35,7 @@ export function useSafeAreaInsetsStyle(
   | "paddingEnd"
   | "paddingStart"
   | "paddingTop"
-> {
+  > {
   const insets = useSafeAreaInsets()
 
   return safeAreaEdges.reduce((acc, e) => {

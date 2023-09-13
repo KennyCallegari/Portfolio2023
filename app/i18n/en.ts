@@ -1,15 +1,9 @@
 const en = {
+  // ------ COMMON ------
   common: {
     ok: "OK!",
     cancel: "Cancel",
     back: "Back",
-  },
-  onBoardingScreen: {
-    firstScreen: "Welcome to my portfolio !",
-    secondScreen: "I'm Kenny Callegari, a mobile app developer",
-    thirdScreen: "Change the app's language",
-    fourthScreen: "Ok, you're all setup",
-    button: "Let's go !"
   },
   errorScreen: {
     title: "Something went wrong!",
@@ -23,6 +17,19 @@ const en = {
       button: "Let's try this again",
     },
   },
+  // ------ ONBOARDING ------
+  onBoardingScreen: {
+    firstScreen: "Welcome to my portfolio !",
+    secondScreen: "I'm Kenny Callegari, a mobile app developer",
+    thirdScreen: "You can choose the app's language here",
+    fourthScreen: "Ok, you're all setup",
+    button: "Let's go !",
+    translationCTA: "PRESS HERE"
+  },
+  // ------ MAIN NAVIGATOR ------
+  mainNavigator: {
+    projectsTab: 'Projets'
+  }
 }
 
 export default en
