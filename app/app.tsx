@@ -22,7 +22,9 @@ import { useFonts } from "expo-font"
 import React from "react"
 import { initialWindowMetrics, SafeAreaProvider } from "react-native-safe-area-context"
 import * as Linking from "expo-linking"
-import { useInitialRootStore } from "./models"
+import * as Localization from "expo-localization"
+import i18n from "i18n-js"
+import { RootStore, useInitialRootStore } from "./models"
 import { AppNavigator, useNavigationPersistence } from "./navigators"
 import { ErrorBoundary } from "./screens/ErrorScreen/ErrorBoundary"
 import * as storage from "./utils/storage"
@@ -56,8 +58,11 @@ function App(props: AppProps) {
 
   const [areFontsLoaded] = useFonts(customFontsToLoad)
 
-  const { rehydrated } = useInitialRootStore(() => {
+  const { rehydrated } = useInitialRootStore((rootStore: RootStore) => {
     // This runs after the root store has been initialized and rehydrated.
+
+    // change i18n locale to value selected by user
+    i18n.locale = rootStore?.userStore?.locale || Localization.locale
 
     // If your initialization scripts run very fast, it's good to show the splash screen for just a bit longer to prevent flicker.
     // Slightly delaying splash screen hiding for better UX; can be customized or removed as needed,

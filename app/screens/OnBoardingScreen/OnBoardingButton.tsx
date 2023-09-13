@@ -102,7 +102,7 @@ const $arrow: ImageStyle = {
 const $text: TextStyle = {
   color: 'white',
   position: 'absolute',
-  fontFamily: 'spaceGroteskBold',
+  fontFamily: 'rubikBold',
   fontSize: 16,
 }
 

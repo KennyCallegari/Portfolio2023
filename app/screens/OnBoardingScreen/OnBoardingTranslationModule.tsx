@@ -6,6 +6,7 @@ import Animated,
 import { colors } from "app/theme"
 import I18n from "i18n-js"
 import { ChangeLanguageButton } from "./ChangeLanguageButton"
+import { useStores } from "app/models"
 
 
 
@@ -16,6 +17,8 @@ interface IOnBoardingTranslationModuleProps {
 export const OnBoardingTranslationModule: FC<IOnBoardingTranslationModuleProps> = function OnBoardingTranslationModule(
   props: IOnBoardingTranslationModuleProps
 ) {
+  const { userStore } = useStores()
+
   const y = useSharedValue(-70)
   const opacity = useSharedValue(1)
   const [fadeCTA, setFadeCTA] = useState(false);
@@ -41,6 +44,7 @@ export const OnBoardingTranslationModule: FC<IOnBoardingTranslationModuleProps> 
 
   const changeLocale = (locale: string) => {
     I18n.locale = locale
+    userStore.setProp("locale", locale)
     props.setLocale(locale)
   }
 
