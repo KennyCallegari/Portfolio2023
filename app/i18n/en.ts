@@ -7,9 +7,10 @@ const en = {
   onBoardingScreen: {
     firstScreen: "Welcome to my portfolio !",
     secondScreen: "I'm Kenny Callegari, a mobile app developer",
-    thirdScreen: "Change the app's language",
+    thirdScreen: "You can choose the app's language here",
     fourthScreen: "Ok, you're all setup",
-    button: "Let's go !"
+    button: "Let's go !",
+    translationCTA: "PRESS HERE"
   },
   errorScreen: {
     title: "Something went wrong!",

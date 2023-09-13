@@ -47,8 +47,8 @@ export const OnBoardingTranslationModule: FC<IOnBoardingTranslationModuleProps> 
   return (
     <View style={$container}>
       {isCTAVisible && <Animated.View style={[$ctaContainer,  $bouncing]}>
-        <CTABox borderColor={colors.palette.blue800} backgroundColor={colors.palette.blue300} text="CLIQUEZ ICI"
-          textColor={colors.palette.blue800} />
+        <CTABox borderColor={colors.palette.blue800} backgroundColor={colors.palette.blue300}
+          tx="onBoardingScreen.translationCTA" textColor={colors.palette.blue800} />
       </Animated.View>}
       <ChangeLanguageButton onPressLanguage={changeLocale} onFirstPress={() => setFadeCTA(true)} />
     </View>

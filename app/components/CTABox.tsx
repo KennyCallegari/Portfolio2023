@@ -1,20 +1,25 @@
 import React from 'react';
 import { TextStyle, View, ViewStyle } from 'react-native';
 import { Text } from './Text';
+import { TxKeyPath } from 'app/i18n';
 
 interface ICTABoxProps {
   borderColor: string
   backgroundColor: string
-  text: string
+  tx: TxKeyPath
   textColor: string
 }
 
+/*
+  A Call To Action box to hover a component with a text describing the action possible to do
+  It's 2 components superimposed because I couldn't find a way to create a border aroung the triangle at the bottom
+*/
 
 export const CTABox = (props: ICTABoxProps) => {
   const {
     borderColor,
     backgroundColor,
-    text,
+    tx,
     textColor
   } = props
 
@@ -70,7 +75,6 @@ export const CTABox = (props: ICTABoxProps) => {
 
   const $innerText: TextStyle = {
     textAlign: 'center',
-    lineHeight: 0,
     color: textColor,
     paddingHorizontal: 8,
   }
@@ -86,7 +90,7 @@ export const CTABox = (props: ICTABoxProps) => {
   const OuterCTABox = () => {
     return (
       <View style={$outerContainer}>
-        <Text weight="bold" style={$outerText} text={text} />
+        <Text weight="bold" style={$outerText} tx={tx} />
         <View style={$outerTriangle} />
       </View>
     );
@@ -95,7 +99,7 @@ export const CTABox = (props: ICTABoxProps) => {
   const InnerCTABox = () => {
     return (
       <View style={$innerContainer}>
-        <Text  weight="bold" style={$innerText} text={text} />
+        <Text weight="bold" style={$innerText} tx={tx} />
         <View style={$innerTriangle} />
       </View>
     );
