@@ -8,7 +8,7 @@ export interface IOnBoardingData {
   text: TxKeyPath,
   textColor: string,
   backgroundColor: string,
-  showButton?: boolean,
+  showTranslationModule?: boolean,
 }
 
 export const footerColors = [
@@ -45,7 +45,7 @@ const data: IOnBoardingData[] = [
     text: 'onBoardingScreen.thirdScreen',
     textColor: colors.palette.blue800,
     backgroundColor: colors.palette.blue300,
-    showButton: true,
+    showTranslationModule: true,
   },
   {
     id: 4,

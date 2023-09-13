@@ -18,6 +18,7 @@ import { colors } from "app/theme"
 
 interface IChangeLanguageButtonProps {
   onPressLanguage: (_: string) => void,
+  onFirstPress: () => void,
 }
 
 export const ChangeLanguageButton: FC<IChangeLanguageButtonProps> = function ChangeLanguageButton(
@@ -29,6 +30,7 @@ export const ChangeLanguageButton: FC<IChangeLanguageButtonProps> = function Cha
   const isOpen = useSharedValue(false)
   // used to re-render icon
   const [isOpened, setIsOpened] = useState(false);
+  const [isFirstPressed, setIsFirstPressed] = useState(false);
 
   const toggleMenu = () => {
     const config = {
@@ -54,6 +56,10 @@ export const ChangeLanguageButton: FC<IChangeLanguageButtonProps> = function Cha
 
     isOpen.value = !isOpen.value
     setTimeout(() => setIsOpened(prevValue => !prevValue), 300)
+    if (!isFirstPressed) {
+      setIsFirstPressed(true)
+      props.onFirstPress()
+    }
   }
 
   const $firstIcon = useAnimatedStyle(() => {
@@ -126,7 +132,6 @@ export const ChangeLanguageButton: FC<IChangeLanguageButtonProps> = function Cha
 }
 
 const $container: ViewStyle = {
-  marginTop: 60,
   alignItems: 'center',
   position: 'relative',
 }
