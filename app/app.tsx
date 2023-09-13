@@ -61,7 +61,7 @@ function App(props: AppProps) {
   const { rehydrated } = useInitialRootStore((rootStore: RootStore) => {
     // This runs after the root store has been initialized and rehydrated.
 
-    // change i18n locale to value selected by user
+    // change i18n locale to value selected by user on onboarding
     i18n.locale = rootStore?.userStore?.locale || Localization.locale
 
     // If your initialization scripts run very fast, it's good to show the splash screen for just a bit longer to prevent flicker.

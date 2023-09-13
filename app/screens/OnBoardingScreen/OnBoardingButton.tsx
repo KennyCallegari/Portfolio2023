@@ -1,10 +1,14 @@
 import React, { FC } from "react"
 import { TextStyle, ViewStyle, useWindowDimensions,  ImageStyle } from "react-native"
+import { useNavigation } from "@react-navigation/native"
 import Animated,
 { SharedValue, interpolateColor, useAnimatedStyle, withSpring, withTiming } from "react-native-reanimated"
 import { translate } from "app/i18n"
 import { DuolingoButton } from "app/components"
 import { footerColors, footerShadowsColors } from "./OnBoardingData"
+import { NativeStackNavigationProp } from "@react-navigation/native-stack"
+import { AppStackParamList } from "app/navigators"
+import { useStores } from "app/models"
 
 
 interface IOnBoardingButtonProps {
@@ -16,9 +20,11 @@ interface IOnBoardingButtonProps {
 
 export const OnBoardingButton: FC<IOnBoardingButtonProps> = function OnBoardingButton(props: IOnBoardingButtonProps) {
   const { width: SCREEN_WIDTH } = useWindowDimensions()
+  const { navigate } = useNavigation<NativeStackNavigationProp<AppStackParamList>>()
+  const { userStore } = useStores()
 
   const $animatedButton = useAnimatedStyle(() => {
-    const isLastScreen = props.flatListIndex.value === props.dataLength - 1;
+    const isLastScreen = props.flatListIndex.value === props.dataLength - 1
 
     return { 
       width: isLastScreen ? withSpring(140) : withSpring(60),
@@ -27,7 +33,7 @@ export const OnBoardingButton: FC<IOnBoardingButtonProps> = function OnBoardingB
   })
 
   const $animatedArrow = useAnimatedStyle(() => {
-    const isLastScreen = props.flatListIndex.value === props.dataLength - 1;
+    const isLastScreen = props.flatListIndex.value === props.dataLength - 1
 
     return {
       width: 30,
@@ -58,7 +64,7 @@ export const OnBoardingButton: FC<IOnBoardingButtonProps> = function OnBoardingB
   })
 
   const $animatedText = useAnimatedStyle(() => {
-    const isLastScreen = props.flatListIndex.value === props.dataLength - 1;
+    const isLastScreen = props.flatListIndex.value === props.dataLength - 1
 
     return {
       opacity: isLastScreen ? withTiming(1) : withTiming(0),
@@ -67,9 +73,12 @@ export const OnBoardingButton: FC<IOnBoardingButtonProps> = function OnBoardingB
   })
 
   const onPress = () => {
-    const isLastScreen = props.flatListIndex.value === props.dataLength - 1;
+    const isLastScreen = props.flatListIndex.value === props.dataLength - 1
 
-    if (isLastScreen) return console.log('NAVIGATE BABY AND ASYNC STORE')
+    if (isLastScreen) {
+      userStore.setProp("hasSeenOnBoarding", true)
+      return navigate("Main", { screen: "Projects" })
+    }
     
     return props.flatListRef.current?.scrollToIndex({ index: props.flatListIndex.value + 1 })
 

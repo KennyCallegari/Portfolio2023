@@ -5,6 +5,7 @@ export const UserStoreModel = types
   .model("UserStore")
   .props({
     locale: "",
+    hasSeenOnBoarding: false,
   })
   .actions(withSetPropAction)
 

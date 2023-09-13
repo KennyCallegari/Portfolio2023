@@ -8,16 +8,18 @@ import {
   DarkTheme,
   DefaultTheme,
   NavigationContainer,
+  NavigatorScreenParams,
 } from "@react-navigation/native"
 import { createNativeStackNavigator, NativeStackScreenProps } from "@react-navigation/native-stack"
 import { observer } from "mobx-react-lite"
 import React from "react"
 import { useColorScheme } from "react-native"
 import * as Screens from "app/screens"
+import { colors } from "app/theme"
 import Config from "../config"
 import { navigationRef, useBackButtonHandler } from "./navigationUtilities"
-import { colors } from "app/theme"
-
+import { MainNavigator, MainTabParamList } from "./MainNavigator"
+import { useStores } from "app/models"
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
  * as well as what properties (if any) they might take when navigating to them.
@@ -33,7 +35,7 @@ import { colors } from "app/theme"
  */
 export type AppStackParamList = {
   OnBoarding: undefined
-  // 🔥 Your screens go here
+  Main: NavigatorScreenParams<MainTabParamList>
   // IGNITE_GENERATOR_ANCHOR_APP_STACK_PARAM_LIST
 }
 
@@ -43,21 +45,23 @@ export type AppStackParamList = {
  */
 const exitRoutes = Config.exitRoutes
 
-export type AppStackScreenProps<T extends keyof AppStackParamList> = NativeStackScreenProps<
-  AppStackParamList,
-  T
->
+export type AppStackScreenProps<T extends keyof AppStackParamList> = NativeStackScreenProps<AppStackParamList, T>
 
 // Documentation: https://reactnavigation.org/docs/stack-navigator/
 const Stack = createNativeStackNavigator<AppStackParamList>()
 
 const AppStack = observer(function AppStack() {
+  const {
+    userStore: { hasSeenOnBoarding },
+  } = useStores()
+
   return (
     <Stack.Navigator
       screenOptions={{ headerShown: false, navigationBarColor: colors.background }}
+      initialRouteName={hasSeenOnBoarding ? "Main" : "OnBoarding"} // @demo remove-current-line
     >
-          <Stack.Screen name="OnBoarding" component={Screens.OnBoardingScreen} />
-      {/** 🔥 Your screens go here */}
+      <Stack.Screen name="OnBoarding" component={Screens.OnBoardingScreen} />
+      <Stack.Screen name="Main" component={MainNavigator} />
       {/* IGNITE_GENERATOR_ANCHOR_APP_STACK_SCREENS */}
     </Stack.Navigator>
   )
