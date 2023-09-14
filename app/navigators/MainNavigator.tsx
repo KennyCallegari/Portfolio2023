@@ -1,16 +1,15 @@
 import { BottomTabScreenProps, createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import { CompositeScreenProps } from "@react-navigation/native"
 import React from "react"
-import { TextStyle, ViewStyle } from "react-native"
-import { useSafeAreaInsets } from "react-native-safe-area-context"
-import { Icon } from "../components"
-import { translate } from "../i18n"
-import { ProjectsScreen } from "../screens"
-import { colors, spacing, typography } from "../theme"
+import Lottie from 'lottie-react-native'
+import { ContactScreen, ProjectsScreen } from "../screens"
 import { AppStackParamList, AppStackScreenProps } from "./AppNavigator"
+import { AnimatedTabBar } from "./AnimatedTabBar/AnimatedTabBar"
+import { ViewStyle } from "react-native"
 
 export type MainTabParamList = {
   Projects: undefined
+  Contact: undefined
 }
 
 /**
@@ -26,44 +25,38 @@ AppStackScreenProps<keyof AppStackParamList>
 const Tab = createBottomTabNavigator<MainTabParamList>()
 
 export function MainNavigator() {
-  const { bottom } = useSafeAreaInsets()
 
   return (
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
         tabBarHideOnKeyboard: true,
-        tabBarStyle: [$tabBar, { height: bottom + 70 }],
-        tabBarActiveTintColor: colors.text,
-        tabBarInactiveTintColor: colors.text,
-        tabBarLabelStyle: $tabBarLabel,
-        tabBarItemStyle: $tabBarItem,
       }}
+      tabBar={(props) => <AnimatedTabBar {...props} />}
     >
       <Tab.Screen
         name="Projects"
         component={ProjectsScreen}
         options={{
-          tabBarLabel: translate("mainNavigator.projectsTab"),
-          tabBarIcon: ({ focused }) => <Icon icon="components" color={focused && colors.tint} />,
+          // @ts-ignore
+          tabBarIcon: ({ ref }) => <Lottie ref={ref} loop={false}
+            source={require('../../assets/animations/react-native.json')} style={$icon} />
+        }}
+      />
+      <Tab.Screen
+        name="Contact"
+        component={ContactScreen}
+        options={{
+          // @ts-ignore
+          tabBarIcon: ({ ref }) => <Lottie ref={ref} loop={false}
+            source={require('../../assets/animations/react-native.json')} style={$icon} />
         }}
       />
     </Tab.Navigator>
   )
 }
 
-const $tabBar: ViewStyle = {
-  backgroundColor: colors.background,
-  borderTopColor: colors.transparent,
-}
-
-const $tabBarItem: ViewStyle = {
-  paddingTop: spacing.md,
-}
-
-const $tabBarLabel: TextStyle = {
-  fontSize: 12,
-  fontFamily: typography.primary.medium,
-  lineHeight: 16,
-  flex: 1,
+const $icon: ViewStyle = {
+  height: 60,
+  width: 60,
 }

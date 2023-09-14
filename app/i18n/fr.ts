@@ -27,9 +27,6 @@ const en = {
     translationCTA: "APPUYER ICI"
   },
   // ------ MAIN NAVIGATOR ------
-  mainNavigator: {
-    projectsTab: 'Projets'
-  }
 }
 
 export default en
