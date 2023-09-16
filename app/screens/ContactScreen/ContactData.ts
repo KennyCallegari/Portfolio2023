@@ -27,4 +27,4 @@ export const data: IData[] = [
 
 export const ICON_SIZE = 42
 export const ITEM_HEIGHT = ICON_SIZE * 2
-export const { height: SCREEN_HEIGHT, width: SCREEN_WIDTH } = Dimensions.get("window")
+export const { height: SCREEN_HEIGHT, width: SCREEN_WIDTH } = Dimensions.get("screen")

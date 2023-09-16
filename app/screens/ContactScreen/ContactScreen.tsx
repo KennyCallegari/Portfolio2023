@@ -85,7 +85,7 @@ const $container: ViewStyle = {
 
 const $titleContainer: ViewStyle = {
   position: "absolute",
-  top: SCREEN_HEIGHT / 6 - ITEM_HEIGHT / 2,
+  top: SCREEN_HEIGHT / 5 - ITEM_HEIGHT / 2,
   width: SCREEN_WIDTH * 0.5,
   paddingHorizontal: spacing.md,
 }
