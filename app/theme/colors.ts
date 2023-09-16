@@ -8,7 +8,7 @@ const palette = {
   neutral500: "#978F8A",
   neutral600: "#564E4A",
   neutral700: "#3C3836",
-  neutral800: "#191015",
+  neutral800: '#2D2D2D',
   neutral900: "#000000",
 
   // GREEN
@@ -52,7 +52,9 @@ const palette = {
   lavender400: '#B1ADD8',
   lavender500: '#B8A8C4',
   lavender600: '#A48AA8',
-  lavender700: '#4E4C6C',
+  lavender700: '#726F9A',
+  lavender800: '#615F87',
+  lavender900: '#4E4C6C',
 
   angry100: "#F2D6CD",
   angry500: "#C03403",

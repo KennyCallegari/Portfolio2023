@@ -2,9 +2,9 @@ import { observer } from "mobx-react-lite"
 import React, { FC } from "react"
 import { View, ViewStyle } from "react-native"
 import { colors } from "app/theme"
-import { AppStackScreenProps } from "app/navigators"
+import { MainTabScreenProps } from "app/navigators"
 
-interface ProjectsScreenProps extends AppStackScreenProps<"OnBoarding"> {}
+interface ProjectsScreenProps extends MainTabScreenProps<"Projects"> {}
 
 export const ProjectsScreen: FC<ProjectsScreenProps> = observer(function ProjectsScreen() {
 
