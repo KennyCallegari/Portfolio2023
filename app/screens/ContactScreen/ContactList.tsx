@@ -1,6 +1,6 @@
 import React, { forwardRef } from "react"
 import { IData, ITEM_HEIGHT, SCREEN_HEIGHT, data } from "./ContactData"
-import { FlatListProps, ViewStyle } from "react-native"
+import { FlatListProps, ViewStyle, ViewToken } from "react-native"
 import Animated from "react-native-reanimated"
 import { ContactListItem } from "./ContactListItem"
 
@@ -13,10 +13,12 @@ interface IContactListProps {
   onItemIndexChange?: (_: number) => void
 }
 
+/*
+  this forwardRef typing gave me nightmares so I let it at any for now
+*/
 export const ContactList = forwardRef<any, IContactListProps>(
   function ContactList(props, ref) {
     const { color, showText, style, onScroll, onItemIndexChange } = props
-
 
     const $contentContainerStyle: ViewStyle = {
       paddingTop: showText ? 0 : SCREEN_HEIGHT / 3 - ITEM_HEIGHT / 2,
@@ -26,9 +28,18 @@ export const ContactList = forwardRef<any, IContactListProps>(
 
     const renderItem = ({ item }) => (<ContactListItem {...item} color={color} showText={showText} />)
 
-    const onMomentumScrollEnd = event => {
-      const newIndex = Math.round(event.nativeEvent.contentOffset.y / ITEM_HEIGHT)
+    /*
+      onViewableItemsChanged and onEndReached are used to get visible item inside the clear FlatList
+      for some reason onViewableItemsChanged doesn't not trigger properly for the last item so I used onEndReached also
+    */
+    const onViewableItemsChanged = ({ viewableItems }: { viewableItems: ViewToken[]}) => {
+      const newIndex = viewableItems[0]?.index || 0
+
       if(onItemIndexChange) onItemIndexChange(newIndex)
+    }
+
+    const onEndReached = () => {
+      if(onItemIndexChange) onItemIndexChange(data.length - 1)
     }
 
     return (
@@ -38,7 +49,8 @@ export const ContactList = forwardRef<any, IContactListProps>(
         scrollEnabled={!showText}
         onScroll={onScroll}
         snapToInterval={ITEM_HEIGHT}
-        onMomentumScrollEnd={onMomentumScrollEnd}
+        onViewableItemsChanged={onViewableItemsChanged}
+        onEndReached={onEndReached}
         scrollEventThrottle={16}
         decelerationRate='fast'
         data={data}

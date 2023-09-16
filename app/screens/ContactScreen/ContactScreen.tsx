@@ -63,11 +63,11 @@ export const ContactScreen: FC<ContactScreenProps> = observer(function ContactSc
         color={colors.palette.lavender200}
         style={StyleSheet.absoluteFill}
         onScroll={onScroll}
-        onItemIndexChange={onItemIndexChange}
         showText={false}
       />
       <ContactList
         ref={selectedListRef}
+        onItemIndexChange={onItemIndexChange}
         color={colors.palette.lavender700}
         showText
         style={$darkList}
@@ -86,7 +86,7 @@ const $container: ViewStyle = {
 const $titleContainer: ViewStyle = {
   position: "absolute",
   top: SCREEN_HEIGHT / 6 - ITEM_HEIGHT / 2,
-  width: SCREEN_WIDTH * 0.7,
+  width: SCREEN_WIDTH * 0.5,
   paddingHorizontal: spacing.md,
 }
 
