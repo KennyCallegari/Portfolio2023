@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react"
+import React, { forwardRef, useRef } from "react"
 import { IData, ITEM_HEIGHT, SCREEN_HEIGHT, data } from "./ContactData"
 import { FlatListProps, ViewStyle, ViewToken } from "react-native"
 import Animated from "react-native-reanimated"
@@ -19,6 +19,7 @@ interface IContactListProps {
 */
 export const ContactList = forwardRef<any, IContactListProps>(
   function ContactList(props, ref) {
+    // showText is also used to distinguish between the selectedItem FlatList and the outsideItems FlatList
     const { color, showText, style, onScroll, onItemIndexChange } = props
 
     const $contentContainerStyle: ViewStyle = {
@@ -38,6 +39,12 @@ export const ContactList = forwardRef<any, IContactListProps>(
 
       if(onItemIndexChange) onItemIndexChange(newIndex)
     }
+    const viewabilityConfig = {
+      minimumViewTime: 100,
+      itemVisiblePercentThreshold: 100,
+      waitForInteraction: false,
+    }
+    const viewabilityConfigCallbackPairs = useRef([{ viewabilityConfig, onViewableItemsChanged }])
 
     const onEndReached = () => {
       if(onItemIndexChange) onItemIndexChange(data.length - 1)
@@ -50,7 +57,7 @@ export const ContactList = forwardRef<any, IContactListProps>(
         scrollEnabled={!showText}
         onScroll={onScroll}
         snapToInterval={ITEM_HEIGHT}
-        onViewableItemsChanged={onViewableItemsChanged}
+        viewabilityConfigCallbackPairs={viewabilityConfigCallbackPairs.current}
         onEndReached={onEndReached}
         scrollEventThrottle={16}
         decelerationRate='fast'

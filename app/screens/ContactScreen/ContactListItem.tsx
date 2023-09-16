@@ -12,16 +12,18 @@ interface IContactListItemProps {
   showText: boolean
 }
 
-export const ContactListItem: FC<IContactListItemProps> = function ContactListItem(props: IContactListItemProps) {
-  const { icon, color, name, showText } = props
+export const ContactListItem: FC<IContactListItemProps> = React.memo(
+  function ContactListItem(props: IContactListItemProps) {
+    const { icon, color, name, showText } = props
 
-  return (
-    <View style={$itemWrapper}>
-      <Text size="xl" style={[$itemText, { color }]} text={showText ? name : ''} />
-      <ContactIcon icon={icon} color={color} />
-    </View>
-  )
-}
+    return (
+      <View style={$itemWrapper}>
+        <Text size="xl" style={[$itemText, { color }]} text={showText ? name : ''} />
+        <ContactIcon icon={icon} color={color} />
+      </View>
+    )
+  }
+)
 
 const $itemWrapper: ViewStyle = {
   flexDirection: 'row',

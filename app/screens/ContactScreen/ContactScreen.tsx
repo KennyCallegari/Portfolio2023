@@ -34,6 +34,7 @@ export const ContactScreen: FC<ContactScreenProps> = observer(function ContactSc
     if (medium === 'phone') return Linking.openURL('tel:+33767181966')
     if (medium === 'mail') return Linking.openURL('mailto:kenny.callegari@gmail.com')
     if (medium === 'linkedin') return Linking.openURL('https://www.linkedin.com/in/kenny-callegari-4b9180281/')
+    if (medium === 'whatsapp') return Linking.openURL(`whatsapp://send?phone=+33767181966`);
 
     return Linking.openURL('https://github.com/KennyCallegari')
   }, [index]); 
@@ -59,7 +60,7 @@ export const ContactScreen: FC<ContactScreenProps> = observer(function ContactSc
         The other shows every other item (outsideListRef)
       */}
       <ContactList
-        ref={outsideListRef} 
+        ref={outsideListRef}
         color={colors.palette.lavender200}
         style={StyleSheet.absoluteFill}
         onScroll={onScroll}

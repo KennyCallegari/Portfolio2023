@@ -1,8 +1,7 @@
 import { Dimensions } from "react-native";
-import { SimpleLineIcons } from "@expo/vector-icons"
 
 export interface IData {
-  icon: keyof typeof SimpleLineIcons.glyphMap,
+  icon: 'call-out' | 'envelope' | 'social-github' | 'social-linkedin' | 'whatsapp',
   name: string,
 }
 
@@ -22,6 +21,10 @@ export const data: IData[] = [
   {
     icon: 'social-linkedin',
     name: 'linkedin',
+  },
+  {
+    icon: 'whatsapp',
+    name: 'whatsapp',
   },
 ];
 
