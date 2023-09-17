@@ -4,6 +4,7 @@ const en = {
     ok: "OK!",
     cancel: "Annuler",
     back: "Retour",
+    nothing: "",
     testShort: 'Bonjour !',
     testLong: 'Ceci est un texte un peu long pour les tests.',
   },
@@ -41,6 +42,13 @@ const en = {
     errorTitle: 'Oh non !',
     errorDescription: 'Je n\'ai pas pu ouvrir le service demandé. Contactez-moi au +33 7 67 18 19 66.',
     errorWhatsapp: 'Etes-vous sûr d\'avoir installé Whatsapp ? Sinon, contactez-moi au +33 7 67 18 19 66.',
+    button: 'C\'est parti !',
+    title: 'Contactez moi via...',
+    phone: 'Téléphone',
+    mail: 'E-mail',
+    github: 'Github',
+    linkedin: 'LinkedIn',
+    whatsapp: 'WhatsApp',
   },
 }
 

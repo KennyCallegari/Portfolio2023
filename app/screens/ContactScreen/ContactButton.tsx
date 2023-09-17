@@ -15,7 +15,7 @@ export const ContactButton: FC<IContactButtonProps> = function ContactButton(pro
       <DuolingoButton onPress={props.onPress} shadowColor={colors.palette.lavender400} shadowDepth={8}
         borderRadius={20}>
         <View style={$button}>
-          <Text text="Connect !" size="xl" color="lavender700" />
+          <Text tx="contactScreen.button" size="xl" color="lavender700" />
         </View>
       </DuolingoButton>
     </View>

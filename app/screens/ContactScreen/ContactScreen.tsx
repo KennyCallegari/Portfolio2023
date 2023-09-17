@@ -79,9 +79,7 @@ export const ContactScreen: FC<ContactScreenProps> = observer(function ContactSc
   return (
     <View style={$container}>
       <View style={$titleContainer}>
-        <Text size="xxl" color="lavender200">
-          Connect with...
-        </Text>
+        <Text size="xxl" color="lavender200" tx="contactScreen.title" />
       </View>
 
       {/*

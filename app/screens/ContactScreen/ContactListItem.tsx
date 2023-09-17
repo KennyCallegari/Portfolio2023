@@ -7,18 +7,19 @@ import { ContactIcon } from "./ContactIcon"
 
 interface IContactListItemProps {
   icon: IData["icon"]
+  name: IData["name"]
+  tx: IData["tx"]
   color: string
-  name: string
   showText: boolean
 }
 
 export const ContactListItem: FC<IContactListItemProps> = 
   function ContactListItem(props: IContactListItemProps) {
-    const { icon, color, name, showText } = props
+    const { icon, color, tx, showText } = props
 
     return (
       <View style={$itemWrapper}>
-        <Text size="xl" style={[$itemText, { color }]} text={showText ? name : ''} />
+        <Text size="xl" style={[$itemText, { color }]} tx={showText ? tx : 'common.nothing'} />
         <ContactIcon icon={icon} color={color} />
       </View>
     )
@@ -32,7 +33,6 @@ const $itemWrapper: ViewStyle = {
 }
 
 const $itemText: TextStyle = {
-  textTransform: 'capitalize',
   textAlign: 'center',
   justifyContent: 'center',
 }
