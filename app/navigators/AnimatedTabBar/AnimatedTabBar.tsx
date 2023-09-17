@@ -4,18 +4,19 @@ import { View, ViewStyle } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { TabBarComponent } from './TabBarComponent';
 
+export const TAB_BAR_HEIGHT = 70
+
 /*
   Replace default tab bar component from @react-navigation/native
   It allows controls on animations
 */
-
 export const AnimatedTabBar = (props: BottomTabBarProps) => {
   const { state: { index: activeIndex, routes }, navigation, descriptors } = props
   const { bottom } = useSafeAreaInsets()
 
   const $container: ViewStyle =  {
     position: 'absolute',
-    height: bottom + 70,
+    height: bottom + TAB_BAR_HEIGHT,
     bottom,
     left: 0,
     right: 0,

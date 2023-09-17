@@ -4,6 +4,9 @@ const en = {
     ok: "OK!",
     cancel: "Cancel",
     back: "Back",
+    nothing: "",
+    testShort: 'Hello !',
+    testLong: 'This is a bit of a long text for testing.',
   },
   errorScreen: {
     title: "Something went wrong!",
@@ -17,6 +20,13 @@ const en = {
       button: "Let's try this again",
     },
   },
+  // ------ TOAST ------
+  toast: {
+    copiedTitle: 'Copied !',
+    copiedDescription: 'Paste it wherever you want.',
+    networkErrorTitle: 'Oh no !',
+    networkErrorDescription: 'It seems your wifi is off.',
+  },
   // ------ ONBOARDING ------
   onBoardingScreen: {
     firstScreen: "Welcome to my portfolio !",
@@ -27,6 +37,19 @@ const en = {
     translationCTA: "PRESS HERE"
   },
   // ------ MAIN NAVIGATOR ------
+  // ------ CONTACT SCREEN ------
+  contactScreen: {
+    errorTitle: 'Oh no !',
+    errorDescription: 'I was unable to open the requested service. Contact me at +33 7 67 18 19 66.',
+    errorWhatsapp: 'Are you sure you have WhatsApp installed ? Otherwise, contact me at +33 7 67 18 19 66.',
+    button: 'Contact me !',
+    title: 'Contact me with...',
+    phone: 'Phone',
+    mail: 'Mail',
+    github: 'Github',
+    linkedin: 'LinkedIn',
+    whatsapp: 'WhatsApp',
+  },
 }
 
 export default en

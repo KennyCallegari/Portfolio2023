@@ -4,20 +4,36 @@ import { ViewStyle, Pressable } from "react-native";
 import Animated from "react-native-reanimated";
 
 interface IDuolingoButtonProps {
+  /*
+    A View with a borderRadius equals to the prop "borderRadius"
+    It's the content of your button
+  */
   children: React.ReactNode,
   onPress: () => void,
   style?: ViewStyle,
-  primaryColor?: string,
+  /*
+    The color of what looks like the bottom the 3D button
+  */
   shadowColor?: string,
+  /*
+    The depth of what looks like the bottom the 3D button
+    The more depth, the more the button seems to pop
+  */
   shadowDepth?: number,
+  borderRadius?: number,
 }
 
+/*
+  Makes the external apparence of a View looks like a button from Duolingo
+  with a satifying press animation
+*/
 export function DuolingoButton(props: IDuolingoButtonProps) {
   const {
     style,
     shadowColor = colors.palette.blue900,
     onPress,
     shadowDepth = 5,
+    borderRadius = 60,
     children
   } = props
 
@@ -45,7 +61,7 @@ export function DuolingoButton(props: IDuolingoButtonProps) {
   const $button: ViewStyle = {
     alignItems: "center",
     alignSelf: "center",
-    borderRadius: 60,
+    borderRadius,
   }
   
 
