@@ -2,12 +2,14 @@ import { observer } from "mobx-react-lite"
 import React, { FC, useRef, useCallback } from "react"
 import { View, ViewStyle, StyleSheet, Linking } from "react-native"
 import Animated, { Value, call } from "react-native-reanimated"
+import Toast from "react-native-toast-message"
 import { MainTabScreenProps } from "app/navigators"
 import { Text } from "app/components"
 import { colors, spacing } from "app/theme"
 import { IData, ITEM_HEIGHT, SCREEN_HEIGHT, SCREEN_WIDTH, data } from "./ContactData"
 import { ContactButton } from "./ContactButton"
 import { ContactList } from "./ContactList"
+import { ERROR } from "app/services/toast"
 
 interface ContactScreenProps extends MainTabScreenProps<"Contact"> {}
 
@@ -28,15 +30,50 @@ export const ContactScreen: FC<ContactScreenProps> = observer(function ContactSc
 
   const onItemIndexChange = useCallback((newIndex: number) => { index.current = newIndex }, [])
 
-  const onPressButton = useCallback(() => {
+  const onPressButton = useCallback(async () => {
     const medium = data[index.current].name
+    
+    try {
+      if (medium === 'phone') { 
+        await Linking.openURL('tel:+33767181966')
+        return
+      }
+      if (medium === 'mail') {
+        await Linking.openURL('mailto:kenny.callegari@gmail.com')
+        return
+      }
+      if (medium === 'linkedin') {
+        await Linking.openURL('https://www.linkedin.com/in/kenny-callegari-4b9180281/')
+        return
+      }
+      if (medium === 'whatsapp') {
+        await Linking.openURL(`whatsapp://send?phone=+33767181966`)
+        return
+      }
 
-    if (medium === 'phone') return Linking.openURL('tel:+33767181966')
-    if (medium === 'mail') return Linking.openURL('mailto:kenny.callegari@gmail.com')
-    if (medium === 'linkedin') return Linking.openURL('https://www.linkedin.com/in/kenny-callegari-4b9180281/')
-    if (medium === 'whatsapp') return Linking.openURL(`whatsapp://send?phone=+33767181966`);
+      await Linking.openURL('https://github.com/KennyCallegari')
+    } catch (e) {
+      console.log('e', e?.message)
+      if (e?.message.includes('whatsapp')) {
+        return Toast.show({
+          type: ERROR,
+          props: {
+            title: 'contactScreen.errorTitle',
+            description: 'contactScreen.errorWhatsapp'
+          },
+          position: 'bottom'
+        });
+      }
 
-    return Linking.openURL('https://github.com/KennyCallegari')
+      return Toast.show({
+        type: ERROR,
+        props: {
+          title: 'contactScreen.errorTitle',
+          description: 'contactScreen.errorDescription'
+        },
+        position: 'bottom'
+      });
+    }
   }, [index]); 
 
   return (

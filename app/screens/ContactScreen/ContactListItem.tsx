@@ -12,7 +12,7 @@ interface IContactListItemProps {
   showText: boolean
 }
 
-export const ContactListItem: FC<IContactListItemProps> = React.memo(
+export const ContactListItem: FC<IContactListItemProps> = 
   function ContactListItem(props: IContactListItemProps) {
     const { icon, color, name, showText } = props
 
@@ -23,7 +23,6 @@ export const ContactListItem: FC<IContactListItemProps> = React.memo(
       </View>
     )
   }
-)
 
 const $itemWrapper: ViewStyle = {
   flexDirection: 'row',

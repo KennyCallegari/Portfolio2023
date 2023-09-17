@@ -19,7 +19,23 @@ if (isExpo) {
    * For one idea on how to support symlinks in Expo, see:
    * https://github.com/infinitered/ignite/issues/1904#issuecomment-1054535068
    */
-  metroConfig = getDefaultExpoConfig(__dirname)
+  metroConfig = (() => {
+    const config = getDefaultExpoConfig(__dirname)
+
+    const { transformer, resolver } = config
+
+    config.transformer = {
+      ...transformer,
+      babelTransformerPath: require.resolve("react-native-svg-transformer"),
+    }
+    config.resolver = {
+      ...resolver,
+      assetExts: resolver.assetExts.filter((ext) => ext !== "svg"),
+      sourceExts: [...resolver.sourceExts, "svg"],
+    }
+
+    return config
+  })()
 } else {
   /**
    * Vanilla metro config - we're using a custom metro config because we want to support symlinks
@@ -30,24 +46,26 @@ if (isExpo) {
    *
    * However, it doesn't hurt to have it either.
    */
-  const { makeMetroConfig } = require("@rnx-kit/metro-config")
-  const MetroSymlinksResolver = require("@rnx-kit/metro-resolver-symlinks")
 
   metroConfig = (async () => {
-    const defaultConfig = await getDefaultConfig()
-    return makeMetroConfig({
-      projectRoot: __dirname,
-      // watchFolders: [`${__dirname}/../..`], // for monorepos
-      resolver: {
-        /**
-         * This custom resolver is for if you're using symlinks.
-         *
-         * You can disable it if you're not using pnpm or a monorepo or symlinks.
-         */
-        resolveRequest: MetroSymlinksResolver(),
-        assetExts: [...defaultConfig.resolver.assetExts, "bin"],
+    const {
+      resolver: { sourceExts, assetExts },
+    } = await getDefaultConfig()
+    return {
+      transformer: {
+        babelTransformerPath: require.resolve("react-native-svg-transformer"),
+        getTransformOptions: async () => ({
+          transform: {
+            experimentalImportSupport: false,
+            inlineRequires: false,
+          },
+        }),
       },
-    })
+      resolver: {
+        assetExts: assetExts.filter((ext) => ext !== "svg"),
+        sourceExts: [...sourceExts, "svg"],
+      },
+    }
   })()
 }
 

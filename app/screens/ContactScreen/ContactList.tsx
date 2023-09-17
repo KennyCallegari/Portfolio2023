@@ -40,8 +40,8 @@ export const ContactList = forwardRef<any, IContactListProps>(
       if(onItemIndexChange) onItemIndexChange(newIndex)
     }
     const viewabilityConfig = {
-      minimumViewTime: 100,
-      itemVisiblePercentThreshold: 100,
+      minimumViewTime: 10,
+      itemVisiblePercentThreshold: 90,
       waitForInteraction: false,
     }
     const viewabilityConfigCallbackPairs = useRef([{ viewabilityConfig, onViewableItemsChanged }])

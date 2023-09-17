@@ -56,8 +56,15 @@ const palette = {
   lavender800: '#615F87',
   lavender900: '#4E4C6C',
 
-  angry100: "#F2D6CD",
-  angry500: "#C03403",
+  angry100: "#F1CBD2",
+  angry500: "#CA4159",
+  angry800: "#7A2741",
+
+  success500: "#03A65A",
+  success800: "#005E38",
+
+  warning500: "#EF8D32",
+  warning800: "#CC561E",
 
   overlay20: "rgba(25, 16, 21, 0.2)",
   overlay50: "rgba(25, 16, 21, 0.5)",
