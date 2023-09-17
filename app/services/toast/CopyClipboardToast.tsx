@@ -34,7 +34,7 @@ const CopyClipboardToast = () => {
     <View style={$container}>
       <View style={$iconContainer}>
         <ToastIconContainer width={60} height={60} fill={colors.palette.success500}>
-          <MaterialIcons name="content-copy" size={28} color="white"  />
+          <MaterialIcons name="content-copy" size={28} color={colors.palette.neutral100} />
         </ToastIconContainer>
       </View>
       <View style={$liquidContainer}>
