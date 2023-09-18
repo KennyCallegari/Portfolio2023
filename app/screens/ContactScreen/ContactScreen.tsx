@@ -4,7 +4,7 @@ import { View, ViewStyle, StyleSheet, Linking } from "react-native"
 import Animated, { Value, call } from "react-native-reanimated"
 import Toast from "react-native-toast-message"
 import { MainTabScreenProps } from "app/navigators"
-import { Text } from "app/components"
+import { Screen, Text } from "app/components"
 import { colors, spacing } from "app/theme"
 import { IData, ITEM_HEIGHT, SCREEN_HEIGHT, SCREEN_WIDTH, data } from "./ContactData"
 import { ContactButton } from "./ContactButton"
@@ -53,7 +53,6 @@ export const ContactScreen: FC<ContactScreenProps> = observer(function ContactSc
 
       await Linking.openURL('https://github.com/KennyCallegari')
     } catch (e) {
-      console.log('e', e?.message)
       if (e?.message.includes('whatsapp')) {
         return Toast.show({
           type: ERROR,
@@ -77,7 +76,7 @@ export const ContactScreen: FC<ContactScreenProps> = observer(function ContactSc
   }, [index]); 
 
   return (
-    <View style={$container}>
+    <Screen preset="fixed" contentContainerStyle={$container}>
       <View style={$titleContainer}>
         <Text size="xxl" color="lavender200" tx="contactScreen.title" />
       </View>
@@ -110,7 +109,7 @@ export const ContactScreen: FC<ContactScreenProps> = observer(function ContactSc
       />
 
       <ContactButton onPress={onPressButton} />
-    </View>
+    </Screen>
   )
 })
 
@@ -122,7 +121,7 @@ const $container: ViewStyle = {
 const $titleContainer: ViewStyle = {
   position: "absolute",
   top: SCREEN_HEIGHT / 5 - ITEM_HEIGHT / 2,
-  width: SCREEN_WIDTH * 0.5,
+  width: SCREEN_WIDTH * 0.6,
   paddingHorizontal: spacing.md,
 }
 
