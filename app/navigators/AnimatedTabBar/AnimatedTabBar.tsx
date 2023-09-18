@@ -16,7 +16,7 @@ export const AnimatedTabBar = (props: BottomTabBarProps) => {
 
   const $container: ViewStyle =  {
     position: 'absolute',
-    height: bottom + TAB_BAR_HEIGHT,
+    height: TAB_BAR_HEIGHT,
     bottom,
     left: 0,
     right: 0,

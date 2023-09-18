@@ -50,6 +50,13 @@ const en = {
     linkedin: 'LinkedIn',
     whatsapp: 'WhatsApp',
   },
+  // ------ RATE MY APP SCREEN ------
+  rateMyAppScreen: {
+    title: "Vous souhaitez évaluer mon app ?",
+    button: 'Évaluer',
+    errorTitle: 'Oh non !',
+    errorDescription: 'Je n\'ai pas réussi à ouvrir le store.'
+  },
 }
 
 export default en

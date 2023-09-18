@@ -1,3 +1,4 @@
+import { TAB_BAR_HEIGHT } from "app/navigators/AnimatedTabBar/AnimatedTabBar"
 import { FlexStyle } from "react-native"
 import { Edge, useSafeAreaInsets } from "react-native-safe-area-context"
 
@@ -38,7 +39,15 @@ export function useSafeAreaInsetsStyle(
   > {
   const insets = useSafeAreaInsets()
 
-  return safeAreaEdges.reduce((acc, e) => {
-    return { ...acc, [`${property}${propertySuffixMap[e]}`]: insets[edgeInsetMap[e] ?? e] }
+  const $safeAreaStyle = safeAreaEdges.reduce((acc, e) => {
+    let inset = insets[edgeInsetMap[e] ?? e]
+    if (propertySuffixMap[e] === "Bottom") inset += TAB_BAR_HEIGHT
+    
+    return {
+      ...acc,
+      [`${property}${propertySuffixMap[e]}`]: inset
+    }
   }, {})
+
+  return $safeAreaStyle
 }

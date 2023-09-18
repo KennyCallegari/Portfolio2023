@@ -1,16 +1,17 @@
 import { observer } from "mobx-react-lite"
 import React, { FC } from "react"
-import { View, ViewStyle } from "react-native"
+import { ViewStyle } from "react-native"
 import { colors } from "app/theme"
 import { MainTabScreenProps } from "app/navigators"
+import { Screen } from "app/components"
 
 interface ProjectsScreenProps extends MainTabScreenProps<"Projects"> {}
 
 export const ProjectsScreen: FC<ProjectsScreenProps> = observer(function ProjectsScreen() {
 
   return (
-    <View style={$container}>
-    </View>
+    <Screen style={$container}>
+    </Screen>
   )
 })
 
