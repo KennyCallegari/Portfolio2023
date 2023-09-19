@@ -2,13 +2,14 @@ import { BottomTabScreenProps, createBottomTabNavigator } from "@react-navigatio
 import { CompositeScreenProps } from "@react-navigation/native"
 import React from "react"
 import Lottie from 'lottie-react-native'
-import { ContactScreen, ProjectsScreen, RateMyAppScreen } from "../screens"
+import { ContactScreen, RateMyAppScreen } from "../screens"
 import { AppStackParamList, AppStackScreenProps } from "./AppNavigator"
 import { AnimatedTabBar } from "./AnimatedTabBar/AnimatedTabBar"
 import { ViewStyle } from "react-native"
+import { ProjectStackNavigator } from "./ProjectStackNavigator"
 
 export type MainTabParamList = {
-  Projects: undefined
+  ProjectStackNavigator: undefined
   Contact: undefined
   RateMyApp: undefined
 }
@@ -36,8 +37,8 @@ export function MainNavigator() {
       tabBar={(props) => <AnimatedTabBar {...props} />}
     >
       <Tab.Screen
-        name="Projects"
-        component={ProjectsScreen}
+        name="ProjectStackNavigator"
+        component={ProjectStackNavigator}
         options={{
           // @ts-ignore
           tabBarIcon: ({ ref }) => <Lottie ref={ref} loop={false}
