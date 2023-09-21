@@ -26,7 +26,7 @@ export const ProjectsScreen: FC<ProjectsScreenProps> = observer(function Project
   }
 
   return (
-    <Screen style={$container}>
+    <Screen preset="fixed" style={$container}>
       <SafeAreaView>
         <Animated.FlatList
           data={data}

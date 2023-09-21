@@ -1,12 +1,19 @@
 import { observer } from "mobx-react-lite"
-import React, { FC, useRef, useCallback } from "react"
+import React, { FC, useCallback } from "react"
 import { View, ViewStyle, StyleSheet, Linking } from "react-native"
-import Animated, { Value, call } from "react-native-reanimated"
+import Animated,
+{
+  scrollTo,
+  useAnimatedReaction,
+  useAnimatedRef,
+  useDerivedValue,
+  useScrollViewOffset
+} from "react-native-reanimated"
 import Toast from "react-native-toast-message"
 import { MainTabScreenProps } from "app/navigators"
 import { Screen, Text } from "app/components"
 import { colors, spacing } from "app/theme"
-import { IData, ITEM_HEIGHT, SCREEN_HEIGHT, SCREEN_WIDTH, data } from "./ContactData"
+import { ITEM_HEIGHT, SCREEN_HEIGHT, SCREEN_WIDTH, data } from "./ContactData"
 import { ContactButton } from "./ContactButton"
 import { ContactList } from "./ContactList"
 import { ERROR } from "app/services/toast"
@@ -14,24 +21,21 @@ import { ERROR } from "app/services/toast"
 interface ContactScreenProps extends MainTabScreenProps<"Contact"> {}
 
 export const ContactScreen: FC<ContactScreenProps> = observer(function ContactScreen() {
-  const index = useRef(0)
-  const outsideListRef = React.useRef<Animated.FlatList<IData>>(null);
-  const selectedListRef = React.useRef<any>(null);
-  const scrollY = React.useRef(new Value<number>(0)).current
+  const outsideListRef = useAnimatedRef<Animated.ScrollView>();
+  const selectedListRef = useAnimatedRef<Animated.ScrollView>();
+  const scrollY = useScrollViewOffset(outsideListRef)
+  const currentIndex = useDerivedValue(() => Math.round(scrollY.value / ITEM_HEIGHT));
 
-  const onScroll = Animated.event(
-    [{ nativeEvent: { contentOffset: { y: scrollY } } }],
-    { useNativeDriver: true }
-  )
 
-  const onScrollYChange = ([scrollY]: [number]) => {
-    if (selectedListRef?.current) selectedListRef.current.scrollToOffset({ offset: scrollY, animated: false });
-  }
-
-  const onItemIndexChange = useCallback((newIndex: number) => { index.current = newIndex }, [])
+  useAnimatedReaction(
+    () => scrollY.value,
+    (currentValue) =>  {
+      if (currentValue) scrollTo(selectedListRef, 0, currentValue, false)
+    },
+  );
 
   const onPressButton = useCallback(async () => {
-    const medium = data[index.current].name
+    const medium = data[currentIndex.value].name
     
     try {
       if (medium === 'phone') { 
@@ -73,7 +77,7 @@ export const ContactScreen: FC<ContactScreenProps> = observer(function ContactSc
         position: 'bottom'
       });
     }
-  }, [index]); 
+  }, [currentIndex.value])
 
   return (
     <Screen preset="fixed" contentContainerStyle={$container}>
@@ -81,13 +85,6 @@ export const ContactScreen: FC<ContactScreenProps> = observer(function ContactSc
         <Text size="xxl" color="lavender200" tx="contactScreen.title" />
       </View>
 
-      {/*
-        Animated.Code is used as eventListener for react-native-reanimated
-        https://github.com/software-mansion/react-native-reanimated/issues/299
-      */}
-      <Animated.Code>
-        {() => call([scrollY], onScrollYChange)}
-      </Animated.Code>
       {/*
         There are 2 lists connected by the scroll, to create the mask view effect
         One only shows 1 item (selectedListRef)
@@ -97,12 +94,10 @@ export const ContactScreen: FC<ContactScreenProps> = observer(function ContactSc
         ref={outsideListRef}
         color={colors.palette.lavender200}
         style={StyleSheet.absoluteFill}
-        onScroll={onScroll}
         showText={false}
       />
       <ContactList
         ref={selectedListRef}
-        onItemIndexChange={onItemIndexChange}
         color={colors.palette.lavender700}
         showText
         style={$darkList}

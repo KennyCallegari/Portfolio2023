@@ -1,7 +1,5 @@
 import React, { FC } from "react"
 import { ViewStyle, ImageStyle, StyleSheet, TextStyle, Animated, View, Pressable } from "react-native"
-import { SharedElement } from "react-navigation-shared-element"
-import { Extrapolate } from "react-native-reanimated"
 import { Text } from "app/components"
 import { FULL_SIZE, IProjectsData, ITEM_HEIGHT, ITEM_WIDTH, SPACING, RADIUS } from "./ProjectsData"
 
@@ -20,13 +18,11 @@ export const ProjectsPreview: FC<IProjectsPreviewProps> = function ProjectsPrevi
   const translateX = scrollX.interpolate({
     inputRange,
     outputRange: [ITEM_WIDTH, 0, -ITEM_WIDTH],
-    extrapolate: Extrapolate.CLAMP
   })
 
   const scale = scrollX.interpolate({
     inputRange,
     outputRange: [1.1, 1, 1.1],
-    extrapolate: Extrapolate.CLAMP
   })
 
   const $animatedText = { transform: [{ translateX }] }
@@ -34,18 +30,14 @@ export const ProjectsPreview: FC<IProjectsPreviewProps> = function ProjectsPrevi
 
   return (
     <Pressable onPress={() => goToDetailsScreen(item)} style={$container}>
-      <SharedElement id={`item.${item.key}.image`} style={StyleSheet.absoluteFillObject}>
-        <View style={$imageContainer}>
-          <Animated.Image source={item.imageSource} style={[$image, $animatedImage]} />
-        </View>
-      </SharedElement>
-      <SharedElement id={`item.${item.key}.appName`}>
-        <View style={$appNameContainer}>
-          <Animated.View style={$animatedText}>
-            <Text text={item.appName} style={$appName} color="neutral100" size="xxl" weight="semiBold" />
-          </Animated.View>
-        </View>
-      </SharedElement>
+      <View style={$imageContainer}>
+        <Animated.Image source={item.imageSource} style={[$image, $animatedImage]} />
+      </View>
+      <View style={$appNameContainer}>
+        <Animated.View style={$animatedText} sharedTransitionTag="tag">
+          <Text text={item.appName} style={$appName} color="neutral100" size="xxl" weight="semiBold" />
+        </Animated.View>
+      </View>
       <Text text={item.date} style={$date} color="neutral100" weight="semiBold" />
     </Pressable>
   )

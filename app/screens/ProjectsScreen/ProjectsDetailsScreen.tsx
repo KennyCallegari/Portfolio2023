@@ -4,7 +4,6 @@ import { ProjectStackScreenProps } from "app/navigators"
 import { Icon, Text } from "app/components"
 import { IProjectsData, ITEM_WIDTH, RADIUS, SPACING } from "./ProjectsData"
 import { colors } from "app/theme"
-import { SharedElement } from "react-navigation-shared-element"
 
 interface ProjectsDetailsScreenProps extends ProjectStackScreenProps<"ProjectsDetails"> {
   item: IProjectsData
@@ -17,27 +16,14 @@ const ProjectsDetailsScreen = function ProjectsDetailsScreen({ navigation, route
     <View style={$container}>
       <Icon icon="back" containerStyle={$backButton} size={35} color={colors.palette.neutral100}
         onPress={() => navigation.goBack()} />
-      <SharedElement id={`item.${item.key}.image`} style={StyleSheet.absoluteFill}>
-        <View style={$imageContainer}>
-          <Image source={item.imageSource} style={$image} />
-        </View>
-      </SharedElement>
-      <SharedElement id={`item.${item.key}.appName`}>
-        <View style={$appNameContainer}>
-          <Text text={item.appName} color="neutral100" size="xxl" weight="semiBold" style={$appName} />
-        </View>
-      </SharedElement>
+      <View style={$imageContainer}>
+        <Image source={item.imageSource} style={$image} />
+      </View>
+      <View style={$appNameContainer}>
+        <Text text={item.appName} color="neutral100" size="xxl" weight="semiBold" style={$appName} />
+      </View>
     </View>
   )
-}
-
-ProjectsDetailsScreen.sharedElements = (route) => {
-  const { item } = route.params
-
-  return [
-    { id: `item.${item.key}.image` },
-    { id: `item.${item.key}.appName` },
-  ]
 }
 
 export default ProjectsDetailsScreen

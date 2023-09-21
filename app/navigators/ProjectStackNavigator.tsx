@@ -1,7 +1,6 @@
 import React from "react"
-import { NativeStackScreenProps } from "@react-navigation/native-stack"
+import { NativeStackScreenProps, createNativeStackNavigator } from "@react-navigation/native-stack"
 import { enableScreens } from "react-native-screens"
-import { createSharedElementStackNavigator } from "react-navigation-shared-element"
 import {
   ProjectsDetailsScreen,
   ProjectsScreen
@@ -24,7 +23,7 @@ T
 >
 
 
-const Stack = createSharedElementStackNavigator<ProjectStackNavigatorParamList>()
+const Stack = createNativeStackNavigator<ProjectStackNavigatorParamList>()
 
 export const ProjectStackNavigator = () => {
   return (
