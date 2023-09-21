@@ -479,7 +479,7 @@ function SwitchAccessibilityLabel(props: ToggleInputProps & { role: "on" | "off"
     $switchAccessibility,
     role === "off" && { end: "5%" },
     role === "on" && { left: "5%" },
-  ]
+  ] as ViewStyle
 
   const color = (function () {
     if (disabled) return colors.palette.neutral600
