@@ -25,7 +25,7 @@ import * as Linking from "expo-linking"
 import * as Localization from "expo-localization"
 import i18n from "i18n-js"
 import Toast from 'react-native-toast-message';
-import { RootStore, useInitialRootStore } from "./models"
+import { RootStore, useInitialRootStore, useStoreAssets } from "./models"
 import { AppNavigator, useNavigationPersistence } from "./navigators"
 import { ErrorBoundary } from "./screens/ErrorScreen/ErrorBoundary"
 import * as storage from "./utils/storage"
@@ -59,6 +59,14 @@ function App(props: AppProps) {
   } = useNavigationPersistence(storage, NAVIGATION_PERSISTENCE_KEY)
 
   const [areFontsLoaded] = useFonts(customFontsToLoad)
+  const [areImagesLoaded] = useStoreAssets([
+    require('../assets/assetsToLoadAtStart/rosario-background.png'),
+    require('../assets/assetsToLoadAtStart/meditatio-background.png'),
+    require('../assets/assetsToLoadAtStart/mister-good-coffee-background.png'),
+    require('../assets/assetsToLoadAtStart/compani-background.png'),
+    require('../assets/assetsToLoadAtStart/compani-outils-background.png'),
+    require('../assets/assetsToLoadAtStart/ector-background.png'),
+  ])
 
   const { rehydrated } = useInitialRootStore((rootStore: RootStore) => {
     // This runs after the root store has been initialized and rehydrated.
@@ -79,7 +87,7 @@ function App(props: AppProps) {
   // In iOS: application:didFinishLaunchingWithOptions:
   // In Android: https://stackoverflow.com/a/45838109/204044
   // You can replace with your own loading component if you wish.
-  if (!rehydrated || !isNavigationStateRestored || !areFontsLoaded) return null
+  if (!rehydrated || !isNavigationStateRestored || !areFontsLoaded || !areImagesLoaded) return null
 
   const linking = {
     prefixes: [prefix],

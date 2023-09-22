@@ -1,13 +1,14 @@
 
+import { useStores } from "app/models";
 import { colors } from "app/theme";
-import { Dimensions, ImageSourcePropType } from "react-native";
+import { Dimensions } from "react-native";
 import { Easing, SharedTransition, withTiming } from "react-native-reanimated";
 
 export interface IProjectsData {
   id: number,
   appName: string,
   date: string,
-  imageSource?: ImageSourcePropType,
+  imageSource?: string,
   color: string,
 }
 
@@ -24,52 +25,6 @@ export const FOOTER_WIDTH = width - FULL_SIZE
 
 // item size when only partially showed on screen. used for paddign for first and last item
 export const PARTIALLY_SHOWED_ITEM_SIZE = (width - FULL_SIZE) / 2;
-
-
-const data: IProjectsData[] = [
-  {
-    id: 1,
-    appName: "Rosario",
-    date: "Avril 2022 - Aujourd'hui",
-    color: colors.palette.lavender600,
-    imageSource: require('./assets/rosario-background.png'),
-  },
-  {
-    id: 2,
-    appName: "Meditatio",
-    date: "Février 2023 - Avril 2023",
-    color: colors.palette.lavender600,
-    imageSource: require('./assets/meditatio-background.png'),
-  },
-  {
-    id: 3,
-    appName: "Mister Good Coffee",
-    date: "Septembre 2021 - Mai 2022",
-    color: colors.palette.lavender600,
-    imageSource: require('./assets/mister-good-coffee-background.png'),
-  },
-  {
-    id: 4,
-    appName: "Compani",
-    date: "Septembre 2020 - Avril 2022",
-    color: colors.palette.lavender600,
-    imageSource: require('./assets/compani-background.png'),
-  },
-  {
-    id: 5,
-    appName: "Compani Outils",
-    date: "Septembre 2020 - Avril 2022",
-    color: colors.palette.lavender600,
-    imageSource: require('./assets/compani-outils-background.png'),
-  },
-  {
-    id: 6,
-    appName: "Ector",
-    date: "Septembre 2019 - Août 2020",
-    color: colors.palette.lavender600,
-    imageSource: require('./assets/ector-background.png'),
-  }
-]
 
 const config = {
   duration: 400,
@@ -94,4 +49,51 @@ export const transitionText = SharedTransition.custom(values => {
   };
 });
 
-export default data
+export const useData = ():IProjectsData[] => {
+  const { assetsStore } = useStores()
+
+  return [
+    {
+      id: 1,
+      appName: "Rosario",
+      date: "Avril 2022 - Aujourd'hui",
+      color: colors.palette.lavender600,
+      imageSource: assetsStore.projectAssets.rosarioBackground,
+    },
+    {
+      id: 2,
+      appName: "Meditatio",
+      date: "Février 2023 - Avril 2023",
+      color: colors.palette.lavender600,
+      imageSource: assetsStore.projectAssets.meditatioBackground,
+    },
+    {
+      id: 3,
+      appName: "Mister Good Coffee",
+      date: "Septembre 2021 - Mai 2022",
+      color: colors.palette.lavender600,
+      imageSource: assetsStore.projectAssets.misterGoodCoffeeBackground,
+    },
+    {
+      id: 4,
+      appName: "Compani",
+      date: "Septembre 2020 - Avril 2022",
+      color: colors.palette.lavender600,
+      imageSource: assetsStore.projectAssets.companiBackground,
+    },
+    {
+      id: 5,
+      appName: "Compani Outils",
+      date: "Septembre 2020 - Avril 2022",
+      color: colors.palette.lavender600,
+      imageSource: assetsStore.projectAssets.companiOutilsBackground,
+    },
+    {
+      id: 6,
+      appName: "Ector",
+      date: "Septembre 2019 - Août 2020",
+      color: colors.palette.lavender600,
+      imageSource: assetsStore.projectAssets.ectorBackground,
+    }
+  ]
+}

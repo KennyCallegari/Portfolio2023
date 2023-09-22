@@ -47,6 +47,7 @@
     "date-fns": "^2.29.2",
     "expo": "49",
     "expo-application": "~5.3.0",
+    "expo-asset": "~8.10.1",
     "expo-constants": "~14.4.2",
     "expo-device": "~5.4.0",
     "expo-file-system": "~15.4.4",

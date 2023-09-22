@@ -29,7 +29,6 @@ export const OnBoardingScreen: FC<OnBoardingScreenProps> = observer(function OnB
   const viewabilityConfig={ minimumViewTime: 300, viewAreaCoveragePercentThreshold: 10 }
   const viewabilityConfigCallbackPairs = useRef([{ viewabilityConfig, onViewableItemsChanged }])
 
-
   const onScroll = useAnimatedScrollHandler({
     onScroll: event => { x.value = event.contentOffset.x }
   })

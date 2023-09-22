@@ -56,7 +56,7 @@ const ProjectsDetailsScreen = function ProjectsDetailsScreen({ navigation, route
       <Animated.Image
         sharedTransitionTag={`image${item.id}`}
         sharedTransitionStyle={transition} 
-        source={item.imageSource}
+        source={{ uri: item.imageSource }}
         resizeMode="cover"
         style={$image}
       />

@@ -71,7 +71,7 @@ export const ProjectsPreview: FC<IProjectsPreviewProps> = function ProjectsPrevi
           <Animated.Image
             sharedTransitionTag={`image${item.id}`}
             sharedTransitionStyle={transition}
-            source={item.imageSource}
+            source={{ uri: item.imageSource }}
             style={[$animatedImage, $image]}
             resizeMode='cover'
           />

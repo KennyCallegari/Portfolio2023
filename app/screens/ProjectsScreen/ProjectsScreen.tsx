@@ -5,7 +5,7 @@ import { SafeAreaView } from "react-native-safe-area-context"
 import { colors } from "app/theme"
 import { ProjectStackScreenProps } from "app/navigators"
 import { Screen } from "app/components"
-import data, { FULL_SIZE, IProjectsData, ITEM_WIDTH, PARTIALLY_SHOWED_ITEM_SIZE } from "./ProjectsData"
+import { FULL_SIZE, IProjectsData, ITEM_WIDTH, PARTIALLY_SHOWED_ITEM_SIZE, useData } from "./ProjectsData"
 import { ProjectsPreview } from "./ProjectsPreview"
 import Animated, { useAnimatedRef, useScrollViewOffset } from "react-native-reanimated"
 
@@ -15,6 +15,7 @@ export const ProjectsScreen: FC<ProjectsScreenProps> = observer(function Project
   const scrollViewRef = useAnimatedRef<Animated.ScrollView>();
   const scrollX = useScrollViewOffset(scrollViewRef);
   const [visibleIndex, setVisibleIndex] = useState(0)
+  const data = useData()
 
   const onMomentumScrollEnd = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
     const _scrollX = event.nativeEvent.contentOffset.x;

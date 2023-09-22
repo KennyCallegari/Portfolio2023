@@ -1,6 +1,8 @@
 import { createContext, useContext, useEffect, useState } from "react"
+import { Asset } from 'expo-asset';
 import { RootStore, RootStoreModel } from "../RootStore"
 import { setupRootStore } from "./setupRootStore"
+import { snakeToCamel } from "app/utils/text";
 
 /**
  * Create the initial (empty) global RootStore instance here.
@@ -78,4 +80,37 @@ export const useInitialRootStore = (callback: (_: RootStore) => void | Promise<v
   }, [])
 
   return { rootStore, rehydrated }
+}
+
+/*
+  load assets to assetStore before opening the app.
+  Example with props : [require('my-asset.png')] 
+  add to store :
+  projectAssets: {
+    myAsset: 'file:///local-uri-to-my-asset'
+  }
+*/
+export function useStoreAssets(moduleIds: number[]): [boolean, Error | null] {
+  const [loaded, setLoaded] = useState(false);
+  const [error, setError] = useState<Error | null>(null);
+  const { assetsStore } = useStores()
+
+
+  useEffect(() => {
+    Asset.loadAsync(moduleIds).then((assets) => {
+      const projectAssets = assets.reduce(
+        (acc, asset) => ({
+          ...acc,
+          [snakeToCamel(asset.name)]: asset.localUri
+        }),
+        {}
+      )
+
+      assetsStore.setProp("projectAssets", projectAssets)
+
+      setLoaded(true)
+    }).catch(setError);
+  }, []);
+
+  return [loaded, error];
 }
