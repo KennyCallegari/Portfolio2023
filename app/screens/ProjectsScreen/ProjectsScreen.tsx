@@ -1,11 +1,11 @@
 import { observer } from "mobx-react-lite"
-import React, { FC } from "react"
-import { ViewStyle } from "react-native"
+import React, { FC, useState } from "react"
+import { NativeScrollEvent, NativeSyntheticEvent, ViewStyle } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 import { colors } from "app/theme"
 import { ProjectStackScreenProps } from "app/navigators"
 import { Screen } from "app/components"
-import data, { FOOTER_WIDTH, FULL_SIZE, IProjectsData } from "./ProjectsData"
+import data, { FULL_SIZE, IProjectsData, ITEM_WIDTH, PARTIALLY_SHOWED_ITEM_SIZE } from "./ProjectsData"
 import { ProjectsPreview } from "./ProjectsPreview"
 import Animated, { useAnimatedRef, useScrollViewOffset } from "react-native-reanimated"
 
@@ -14,17 +14,26 @@ interface ProjectsScreenProps extends ProjectStackScreenProps<"Projects"> {}
 export const ProjectsScreen: FC<ProjectsScreenProps> = observer(function ProjectsScreen({ navigation }) {
   const scrollViewRef = useAnimatedRef<Animated.ScrollView>();
   const scrollX = useScrollViewOffset(scrollViewRef);
+  const [visibleIndex, setVisibleIndex] = useState(0)
+
+  const onMomentumScrollEnd = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+    const _scrollX = event.nativeEvent.contentOffset.x;
+    const index = Math.round((_scrollX) / ITEM_WIDTH);
+
+    setVisibleIndex(index)
+  };
   
   const goToDetailsScreen = (item: IProjectsData) => navigation.navigate("ProjectsDetails", { item })
 
   const renderItem = (item: IProjectsData, index: number) =>  {
     return (
       <ProjectsPreview
-        key={item.key}
+        key={item.id}
         item={item}
         index={index}
         scrollX={scrollX}
         goToDetailsScreen={goToDetailsScreen}
+        disabled={visibleIndex !== index}
       />
     )
   }
@@ -40,6 +49,7 @@ export const ProjectsScreen: FC<ProjectsScreenProps> = observer(function Project
           decelerationRate="fast"
           contentContainerStyle={$listContainer}
           scrollEventThrottle={16}
+          onMomentumScrollEnd={onMomentumScrollEnd}
         >
           {data.map(renderItem)}
         </Animated.ScrollView>
@@ -55,5 +65,5 @@ const $container: ViewStyle = {
 }
 
 const $listContainer: ViewStyle = {
-  paddingRight: FOOTER_WIDTH
+  paddingHorizontal: PARTIALLY_SHOWED_ITEM_SIZE
 }

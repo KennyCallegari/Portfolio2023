@@ -1,9 +1,10 @@
 
 import { colors } from "app/theme";
 import { Dimensions, ImageSourcePropType } from "react-native";
+import { Easing, SharedTransition, withTiming } from "react-native-reanimated";
 
 export interface IProjectsData {
-  key: string,
+  id: number,
   appName: string,
   date: string,
   imageSource?: ImageSourcePropType,
@@ -21,50 +22,76 @@ export const ITEM_HEIGHT = s * 1.5
 export const FULL_SIZE = s + SPACING * 2
 export const FOOTER_WIDTH = width - FULL_SIZE
 
+// item size when only partially showed on screen. used for paddign for first and last item
+export const PARTIALLY_SHOWED_ITEM_SIZE = (width - FULL_SIZE) / 2;
+
 
 const data: IProjectsData[] = [
   {
-    key: "1",
+    id: 1,
     appName: "Rosario",
     date: "Avril 2022 - Aujourd'hui",
     color: colors.palette.lavender600,
     imageSource: require('./assets/rosario-background.png'),
   },
   {
-    key: "2",
+    id: 2,
     appName: "Meditatio",
     date: "Février 2023 - Avril 2023",
     color: colors.palette.lavender600,
     imageSource: require('./assets/meditatio-background.png'),
   },
   {
-    key: "3",
+    id: 3,
     appName: "Mister Good Coffee",
     date: "Septembre 2021 - Mai 2022",
     color: colors.palette.lavender600,
     imageSource: require('./assets/mister-good-coffee-background.png'),
   },
   {
-    key: "4",
+    id: 4,
     appName: "Compani",
     date: "Septembre 2020 - Avril 2022",
     color: colors.palette.lavender600,
     imageSource: require('./assets/compani-background.png'),
   },
   {
-    key: "5",
+    id: 5,
     appName: "Compani Outils",
     date: "Septembre 2020 - Avril 2022",
     color: colors.palette.lavender600,
     imageSource: require('./assets/compani-outils-background.png'),
   },
   {
-    key: "6",
+    id: 6,
     appName: "Ector",
     date: "Septembre 2019 - Août 2020",
     color: colors.palette.lavender600,
     imageSource: require('./assets/ector-background.png'),
   }
 ]
+
+const config = {
+  duration: 400,
+  easing: Easing.quad
+}
+
+export const transition = SharedTransition.custom(values => {
+  'worklet';
+  return {
+    width: withTiming(values.targetWidth, config),
+    height: withTiming(values.targetHeight, config),
+    originX: withTiming(values.targetOriginX, config),
+    originY: withTiming(values.targetOriginY, config),
+  };
+});
+
+export const transitionText = SharedTransition.custom(values => {
+  'worklet';
+  return {
+    originX: withTiming(values.targetOriginX, config),
+    originY: withTiming(values.targetOriginY, config),
+  };
+});
 
 export default data

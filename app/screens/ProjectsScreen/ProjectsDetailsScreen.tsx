@@ -1,27 +1,39 @@
 import React from "react"
-import { View, ViewStyle, StyleSheet, ImageStyle, Image, TextStyle } from "react-native"
+import { View, ViewStyle, StyleSheet, ImageStyle, TextStyle, Dimensions } from "react-native"
 import { ProjectStackScreenProps } from "app/navigators"
-import { Icon, Text } from "app/components"
-import { IProjectsData, ITEM_WIDTH, RADIUS, SPACING } from "./ProjectsData"
+import { Icon } from "app/components"
+import { IProjectsData, ITEM_WIDTH, RADIUS, SPACING, transition, transitionText } from "./ProjectsData"
 import { colors } from "app/theme"
+import Animated, { FadeIn } from "react-native-reanimated"
 
 interface ProjectsDetailsScreenProps extends ProjectStackScreenProps<"ProjectsDetails"> {
   item: IProjectsData
 }
+
+export const { height: SCREEN_HEIGHT, width: SCREEN_WIDTH } = Dimensions.get("screen")
 
 const ProjectsDetailsScreen = function ProjectsDetailsScreen({ navigation, route }: ProjectsDetailsScreenProps) {
   const { item } = route.params
 
   return (
     <View style={$container}>
-      <Icon icon="back" containerStyle={$backButton} size={35} color={colors.palette.neutral100}
-        onPress={() => navigation.goBack()} />
-      <View style={$imageContainer}>
-        <Image source={item.imageSource} style={$image} />
-      </View>
-      <View style={$appNameContainer}>
-        <Text text={item.appName} color="neutral100" size="xxl" weight="semiBold" style={$appName} />
-      </View>
+      <Animated.View entering={FadeIn.duration(500).delay(500)} style={$backButton}>
+        <Icon icon="back" size={35} color={colors.palette.neutral100}
+          onPress={() => navigation.goBack()} />
+      </Animated.View>
+      
+      <Animated.Image
+        sharedTransitionTag={`image${item.id}`}
+        sharedTransitionStyle={transition} 
+        source={item.imageSource}
+        resizeMode="cover"
+        style={$image}
+      />
+
+      <Animated.Text sharedTransitionTag={`title${item.id}`} sharedTransitionStyle={transitionText}
+        style={$appName}>
+        {item.appName}
+      </Animated.Text>
     </View>
   )
 }
@@ -40,27 +52,26 @@ const $backButton: ImageStyle = {
   left: SPACING * 2,
 }
 
-const $imageContainer: ViewStyle = {
-  ...StyleSheet.absoluteFillObject,
-  overflow: "hidden",
-  borderRadius: RADIUS,
-}
-
 const $image: ImageStyle = {
-  ...StyleSheet.absoluteFillObject,
-  width: undefined,
-  height: undefined,
+  width: SCREEN_WIDTH,
+  height: SCREEN_HEIGHT,
   resizeMode: 'cover',
-}
-
-const $appNameContainer: ViewStyle = {
-  width: ITEM_WIDTH * .8,
-  position: 'absolute',
-  top: 120,
-  left: SPACING * 2,
+  borderRadius: RADIUS,
+  zIndex: 0,
 }
 
 const $appName: TextStyle = {
-  textTransform: 'uppercase',
-}
+  width: ITEM_WIDTH * .8,
+  zIndex: 1,
 
+  textTransform: 'uppercase',
+  color: colors.palette.neutral100,
+  fontSize: 36,
+  lineHeight: 44,
+  fontFamily: 'rubikSemiBold',
+
+  position: 'absolute',
+  top: 120,
+  left: SPACING * 2,
+  transform: [{ translateX: 0 }],
+}

@@ -1,26 +1,38 @@
 import React, { FC } from "react"
-import { ViewStyle, ImageStyle, StyleSheet, TextStyle, View, Pressable } from "react-native"
+import { ViewStyle, ImageStyle, TextStyle, View, Pressable } from "react-native"
 import { Text } from "app/components"
-import { FULL_SIZE, IProjectsData, ITEM_HEIGHT, ITEM_WIDTH, SPACING, RADIUS } from "./ProjectsData"
-import Animated, { Extrapolation, SharedValue, interpolate, useAnimatedStyle } from "react-native-reanimated"
+import {
+  FULL_SIZE,
+  IProjectsData,
+  ITEM_HEIGHT,
+  ITEM_WIDTH,
+  SPACING,
+  RADIUS,
+  transition,
+  transitionText
+} from "./ProjectsData"
+import Animated, { SharedValue, interpolate, useAnimatedStyle } from "react-native-reanimated"
+import { colors } from "app/theme"
 
 
 interface IProjectsPreviewProps {
   item: IProjectsData,
   index: number,
+  disabled: boolean,
   scrollX: SharedValue<number>,
   goToDetailsScreen: (_: IProjectsData) => void
 }
 
 export const ProjectsPreview: FC<IProjectsPreviewProps> = function ProjectsPreview(props: IProjectsPreviewProps) {
-  const { item, index, goToDetailsScreen, scrollX } = props;
+  const { item, index, disabled, goToDetailsScreen, scrollX } = props;
+
   const inputRange = [(index - 1) * FULL_SIZE, index * FULL_SIZE, ( index + 1 ) * FULL_SIZE]
 
   const $animatedImage = useAnimatedStyle(() => {
     const scale = interpolate(
       scrollX.value,
       inputRange,
-      [1, 1.1, 1]
+      [1.2, 1, 1.2]
     );
 
     return {
@@ -32,10 +44,8 @@ export const ProjectsPreview: FC<IProjectsPreviewProps> = function ProjectsPrevi
     const translateX = interpolate(
       scrollX.value,
       inputRange,
-      [ITEM_WIDTH, 0, -ITEM_WIDTH],
-      {
-        extrapolateRight: Extrapolation.CLAMP,
-      });
+      [ITEM_WIDTH, 0, -ITEM_WIDTH]
+    );
 
     return {
       transform: [{ translateX }],
@@ -49,33 +59,31 @@ export const ProjectsPreview: FC<IProjectsPreviewProps> = function ProjectsPrevi
       [ITEM_WIDTH + 1000, 0, -ITEM_WIDTH - 1000]
     );
 
-    const opacity = interpolate(
-      scrollX.value,
-      inputRange,
-      [0, 1, 0]
-    );
-
     return {
       transform: [{ translateX }],
-      opacity,
     };
   });
 
   return (
-    <Pressable onPress={() => goToDetailsScreen(item)} style={$container}>
-      <View style={$imageContainer}>
-        <Animated.Image source={item.imageSource} style={[$image, $animatedImage]} />
+    <Pressable disabled={disabled} onPress={() => goToDetailsScreen(item)} style={$container}>
+      <View style={$image}>
+        <Animated.Image
+          sharedTransitionTag={`image${item.id}`}
+          sharedTransitionStyle={transition}
+          source={item.imageSource}
+          style={[$animatedImage, $image]}
+          resizeMode='cover'
+        />
       </View>
-      <View style={$appNameContainer}>
-        <Animated.View style={$animatedText} sharedTransitionTag="tag">
-          <Text text={item.appName} style={$appName} color="neutral100" size="xxl" weight="semiBold" />
-        </Animated.View>
-      </View>
-      <View style={$date}>
-        <Animated.View style={$animatedDateText} sharedTransitionTag="tag">
-          <Text text={item.date} color="neutral100" weight="semiBold" />
-        </Animated.View>
-      </View>
+
+      <Animated.Text sharedTransitionTag={`title${item.id}`} sharedTransitionStyle={transitionText}
+        style={[$appName, $animatedText]}>
+        {item.appName}
+      </Animated.Text>
+
+      <Animated.View style={[$date, $animatedDateText]}>
+        <Text text={item.date} color="neutral100" weight="semiBold" />
+      </Animated.View>
     </Pressable>
   )
 }
@@ -87,30 +95,28 @@ const $container: ViewStyle = {
   overflow: "hidden",
 }
 
-const $imageContainer: ViewStyle = {
-  ...StyleSheet.absoluteFillObject,
+const $image: ImageStyle = {
+  width: ITEM_WIDTH,
+  height: ITEM_HEIGHT,
   overflow: "hidden",
   borderRadius: RADIUS,
-}
-
-const $image: ImageStyle = {
-  ...StyleSheet.absoluteFillObject,
-  width: undefined,
-  height: undefined,
-  resizeMode: 'cover',
-}
-
-const $appNameContainer: ViewStyle = {
-  width: ITEM_WIDTH * .8,
-  position: 'absolute',
-  top: SPACING,
-  left: SPACING,
+  zIndex: 0,
 }
 
 const $appName: TextStyle = {
-  textTransform: 'uppercase',
-}
+  width: ITEM_WIDTH * .8,
+  zIndex: 200,
 
+  position: 'absolute',
+  top: SPACING,
+  left: SPACING,
+  textTransform: 'uppercase',
+
+  color: colors.palette.neutral100,
+  fontSize: 36,
+  lineHeight: 44,
+  fontFamily: 'rubikSemiBold'
+}
 const $date: TextStyle = {
   position: 'absolute',
   bottom: SPACING,
