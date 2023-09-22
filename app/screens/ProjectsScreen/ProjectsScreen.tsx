@@ -1,21 +1,23 @@
 import { observer } from "mobx-react-lite"
 import React, { FC, useState } from "react"
-import { NativeScrollEvent, NativeSyntheticEvent, ViewStyle } from "react-native"
-import { SafeAreaView } from "react-native-safe-area-context"
+import { NativeScrollEvent, NativeSyntheticEvent, TextStyle, ViewStyle } from "react-native"
+import Animated, { useAnimatedRef, useScrollViewOffset } from "react-native-reanimated"
+
 import { colors } from "app/theme"
 import { ProjectStackScreenProps } from "app/navigators"
-import { Screen } from "app/components"
+import { Screen, Text } from "app/components"
+
 import { FULL_SIZE, IProjectsData, ITEM_WIDTH, PARTIALLY_SHOWED_ITEM_SIZE, useData } from "./ProjectsData"
 import { ProjectsPreview } from "./ProjectsPreview"
-import Animated, { useAnimatedRef, useScrollViewOffset } from "react-native-reanimated"
 
 interface ProjectsScreenProps extends ProjectStackScreenProps<"Projects"> {}
 
 export const ProjectsScreen: FC<ProjectsScreenProps> = observer(function ProjectsScreen({ navigation }) {
+  const data = useData()
+
   const scrollViewRef = useAnimatedRef<Animated.ScrollView>();
   const scrollX = useScrollViewOffset(scrollViewRef);
   const [visibleIndex, setVisibleIndex] = useState(0)
-  const data = useData()
 
   const onMomentumScrollEnd = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
     const _scrollX = event.nativeEvent.contentOffset.x;
@@ -40,31 +42,43 @@ export const ProjectsScreen: FC<ProjectsScreenProps> = observer(function Project
   }
 
   return (
-    <Screen preset="fixed" style={$container}>
-      <SafeAreaView>
-        <Animated.ScrollView
-          ref={scrollViewRef}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          snapToInterval={FULL_SIZE}
-          decelerationRate="fast"
-          contentContainerStyle={$listContainer}
-          scrollEventThrottle={16}
-          onMomentumScrollEnd={onMomentumScrollEnd}
-        >
-          {data.map(renderItem)}
-        </Animated.ScrollView>
-      </SafeAreaView>
+    <Screen
+      preset="fixed"
+      backgroundColor={colors.palette.blue300}
+      safeAreaEdges={["bottom", "top"]}
+      contentContainerStyle={$screen}
+    >
+      <Text style={$title} text="Mes projets" size="xxl" weight="semiBold" color="blue800" />
+      <Animated.ScrollView
+        ref={scrollViewRef}
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        snapToInterval={FULL_SIZE}
+        decelerationRate="fast"
+        contentContainerStyle={$listContainer}
+        scrollEventThrottle={16}
+        onMomentumScrollEnd={onMomentumScrollEnd}
+      >
+        {data.map(renderItem)}
+      </Animated.ScrollView>
     </Screen>
   )
 })
 
-const $container: ViewStyle = {
-  flex: 1,
+const $screen: ViewStyle = {
+  width: '100%',
+  height: '100%',
   justifyContent: 'center',
-  backgroundColor: colors.palette.angry500
+}
+
+const $title: TextStyle = {
+  position: 'absolute',
+  top: 20,
+  left: 20,
 }
 
 const $listContainer: ViewStyle = {
+  alignItems: 'center',
+  justifyContent: 'center',
   paddingHorizontal: PARTIALLY_SHOWED_ITEM_SIZE
 }

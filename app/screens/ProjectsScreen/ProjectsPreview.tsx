@@ -1,6 +1,10 @@
 import React, { FC } from "react"
 import { ViewStyle, ImageStyle, TextStyle, View, Pressable } from "react-native"
+import Animated, { FadeInDown, SharedValue, interpolate, useAnimatedStyle } from "react-native-reanimated"
+
 import { Text } from "app/components"
+import { colors } from "app/theme"
+
 import {
   FULL_SIZE,
   IProjectsData,
@@ -11,8 +15,6 @@ import {
   transition,
   transitionText
 } from "./ProjectsData"
-import Animated, { FadeInDown, SharedValue, interpolate, useAnimatedStyle } from "react-native-reanimated"
-import { colors } from "app/theme"
 
 
 interface IProjectsPreviewProps {
@@ -64,9 +66,11 @@ export const ProjectsPreview: FC<IProjectsPreviewProps> = function ProjectsPrevi
     };
   });
 
+  const onPress = () => goToDetailsScreen(item)
+
   return (
-    <Animated.View entering={FadeInDown.duration(1000).delay(1000*index)}>
-      <Pressable disabled={disabled} onPress={() => goToDetailsScreen(item)} style={$container}>
+    <Animated.View entering={FadeInDown.duration(1000).delay(1000*index)} style={$container}>
+      <Pressable disabled={disabled} onPress={onPress} style={$contentContainer}>
         <View style={$image}>
           <Animated.Image
             sharedTransitionTag={`image${item.id}`}
@@ -85,6 +89,7 @@ export const ProjectsPreview: FC<IProjectsPreviewProps> = function ProjectsPrevi
         <Animated.View style={[$date, $animatedDateText]} entering={FadeInDown.duration(500).delay(700)}>
           <Text text={item.date} color="neutral100" weight="semiBold" />
         </Animated.View>
+
       </Pressable>
     </Animated.View>
   )
@@ -94,7 +99,28 @@ const $container: ViewStyle = {
   width: ITEM_WIDTH,
   height: ITEM_HEIGHT,
   margin: SPACING,
-  overflow: "hidden",
+  borderRadius: RADIUS,
+
+  // to calculate shadow efficiently we need to set a background color
+  backgroundColor: 'white',
+
+  shadowColor: colors.palette.neutral900,
+  shadowOffset: {
+    width: 1,
+    height: 10,
+  },
+  shadowOpacity: 0.5,
+  shadowRadius: 10,
+  elevation: 4,
+}
+
+const $contentContainer: ViewStyle = {
+  borderColor: colors.palette.neutral100,
+  borderWidth: 2,
+  width: ITEM_WIDTH,
+  height: ITEM_HEIGHT,
+  borderRadius: RADIUS + 1,
+  overflow:'hidden'
 }
 
 const $image: ImageStyle = {
@@ -119,9 +145,9 @@ const $appName: TextStyle = {
   lineHeight: 44,
   fontFamily: 'rubikSemiBold'
 }
+
 const $date: TextStyle = {
   position: 'absolute',
   bottom: SPACING,
   left: SPACING,
 }
-

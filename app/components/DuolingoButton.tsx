@@ -29,12 +29,12 @@ interface IDuolingoButtonProps {
 */
 export function DuolingoButton(props: IDuolingoButtonProps) {
   const {
+    children,
+    onPress,
     style,
     shadowColor = colors.palette.blue900,
-    onPress,
     shadowDepth = 5,
     borderRadius = 60,
-    children
   } = props
 
   const [isPressed, setIsPressed] = useState(false);

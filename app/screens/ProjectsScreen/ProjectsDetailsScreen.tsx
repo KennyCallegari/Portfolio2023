@@ -40,7 +40,6 @@ const ProjectsDetailsScreen = function ProjectsDetailsScreen({ navigation, route
     textAlign: 'center',
     transform: [{ translateX: 0 }],
   }
-  
 
   return (
     <View style={$container}>
@@ -56,7 +55,7 @@ const ProjectsDetailsScreen = function ProjectsDetailsScreen({ navigation, route
       <Animated.Image
         sharedTransitionTag={`image${item.id}`}
         sharedTransitionStyle={transition} 
-        source={{ uri: item.imageSource }}
+        source={{ uri: item?.imageSource || '' }}
         resizeMode="cover"
         style={$image}
       />
@@ -68,7 +67,7 @@ export default ProjectsDetailsScreen
 
 const $container: ViewStyle = {
   ...StyleSheet.absoluteFillObject,
-  backgroundColor: colors.palette.angry500
+  backgroundColor: colors.palette.blue300
 }
 
 const $image: ImageStyle = {
