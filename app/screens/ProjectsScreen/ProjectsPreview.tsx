@@ -11,7 +11,7 @@ import {
   transition,
   transitionText
 } from "./ProjectsData"
-import Animated, { SharedValue, interpolate, useAnimatedStyle } from "react-native-reanimated"
+import Animated, { FadeInDown, SharedValue, interpolate, useAnimatedStyle } from "react-native-reanimated"
 import { colors } from "app/theme"
 
 
@@ -65,26 +65,28 @@ export const ProjectsPreview: FC<IProjectsPreviewProps> = function ProjectsPrevi
   });
 
   return (
-    <Pressable disabled={disabled} onPress={() => goToDetailsScreen(item)} style={$container}>
-      <View style={$image}>
-        <Animated.Image
-          sharedTransitionTag={`image${item.id}`}
-          sharedTransitionStyle={transition}
-          source={item.imageSource}
-          style={[$animatedImage, $image]}
-          resizeMode='cover'
-        />
-      </View>
+    <Animated.View entering={FadeInDown.duration(1000).delay(1000*index)}>
+      <Pressable disabled={disabled} onPress={() => goToDetailsScreen(item)} style={$container}>
+        <View style={$image}>
+          <Animated.Image
+            sharedTransitionTag={`image${item.id}`}
+            sharedTransitionStyle={transition}
+            source={item.imageSource}
+            style={[$animatedImage, $image]}
+            resizeMode='cover'
+          />
+        </View>
 
-      <Animated.Text sharedTransitionTag={`title${item.id}`} sharedTransitionStyle={transitionText}
-        style={[$appName, $animatedText]}>
-        {item.appName}
-      </Animated.Text>
+        <Animated.Text sharedTransitionTag={`title${item.id}`} sharedTransitionStyle={transitionText}
+          style={[$appName, $animatedText]} entering={FadeInDown.duration(500).delay(600)}>
+          {item.appName}
+        </Animated.Text>
 
-      <Animated.View style={[$date, $animatedDateText]}>
-        <Text text={item.date} color="neutral100" weight="semiBold" />
-      </Animated.View>
-    </Pressable>
+        <Animated.View style={[$date, $animatedDateText]} entering={FadeInDown.duration(500).delay(700)}>
+          <Text text={item.date} color="neutral100" weight="semiBold" />
+        </Animated.View>
+      </Pressable>
+    </Animated.View>
   )
 }
 
@@ -104,12 +106,12 @@ const $image: ImageStyle = {
 }
 
 const $appName: TextStyle = {
-  width: ITEM_WIDTH * .8,
+  width: ITEM_WIDTH,
   zIndex: 200,
 
   position: 'absolute',
   top: SPACING,
-  left: SPACING,
+  textAlign: 'center',
   textTransform: 'uppercase',
 
   color: colors.palette.neutral100,
