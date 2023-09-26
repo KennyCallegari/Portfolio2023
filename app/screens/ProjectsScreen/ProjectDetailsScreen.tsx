@@ -1,25 +1,36 @@
 import React from "react"
-import { View, ViewStyle, StyleSheet, ImageStyle, TextStyle, Dimensions } from "react-native"
+import { ViewStyle, StyleSheet, ImageStyle, TextStyle, Dimensions, View } from "react-native"
 import { ProjectStackScreenProps } from "app/navigators"
-import { Icon } from "app/components"
-import { IProjectsData, ITEM_WIDTH, SPACING, transition, transitionText } from "./ProjectsData"
+import { Icon, Screen } from "app/components"
+import {
+  IProjectDetailsData,
+  IProjectsData,
+  ITEM_WIDTH,
+  SPACING,
+  rosarioData,
+  transition,
+  transitionText
+} from "./ProjectsData"
 import { colors } from "app/theme"
-import Animated, { FadeIn } from "react-native-reanimated"
+import Animated, { FadeIn, useSharedValue } from "react-native-reanimated"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
+import { ProjectDetailsItem } from "./ProjectDetailsItem"
 
-interface ProjectsDetailsScreenProps extends ProjectStackScreenProps<"ProjectsDetails"> {
+interface ProjectDetailsScreenProps extends ProjectStackScreenProps<"ProjectsDetails"> {
   item: IProjectsData
 }
 
 export const { height: SCREEN_HEIGHT, width: SCREEN_WIDTH } = Dimensions.get("screen")
 
-const ProjectsDetailsScreen = function ProjectsDetailsScreen({ navigation, route }: ProjectsDetailsScreenProps) {
+const ProjectDetailsScreen = function ProjectDetailsScreen({ navigation, route }: ProjectDetailsScreenProps) {
   const { item } = route.params
-  const { top: safeTop } = useSafeAreaInsets() 
+  const { top: safeTop } = useSafeAreaInsets()
+
+  const shuffleBack = useSharedValue(false)
 
   const $backButton: ImageStyle = {
     position: 'absolute',
-    zIndex: 1,
+    zIndex: 2,
     top: safeTop + 30,
     left: SPACING * 2,
   }
@@ -41,8 +52,12 @@ const ProjectsDetailsScreen = function ProjectsDetailsScreen({ navigation, route
     transform: [{ translateX: 0 }],
   }
 
+  const renderItem = (item: IProjectDetailsData, index: number) => {
+    return <ProjectDetailsItem key={item.id} item={item} index={index} shuffleBack={shuffleBack} />
+  }
+
   return (
-    <View style={$container}>
+    <Screen preset="fixed" contentContainerStyle={$container}>
       <Animated.View entering={FadeIn.duration(500).delay(500)} style={$backButton}>
         <Icon icon="back" size={35} color={colors.palette.neutral100}
           onPress={() => navigation.goBack()} />
@@ -51,6 +66,10 @@ const ProjectsDetailsScreen = function ProjectsDetailsScreen({ navigation, route
         style={$appName}>
         {item.appName}
       </Animated.Text>
+
+      <View style={$list}>
+        {rosarioData.map(renderItem)}
+      </View>
       
       <Animated.Image
         sharedTransitionTag={`image${item.id}`}
@@ -59,18 +78,27 @@ const ProjectsDetailsScreen = function ProjectsDetailsScreen({ navigation, route
         resizeMode="cover"
         style={$image}
       />
-    </View>
+    </Screen>
   )
 }
 
-export default ProjectsDetailsScreen
+export default ProjectDetailsScreen
 
 const $container: ViewStyle = {
   ...StyleSheet.absoluteFillObject,
-  backgroundColor: colors.palette.blue300
+  flex: 1,
+  justifyContent: 'center',
+  backgroundColor: colors.palette.blue300 // for shared element transition purpose
+}
+
+const $list: ViewStyle = {
+  zIndex: 1,
+  flex: 1,
+  alignItems: 'center',
 }
 
 const $image: ImageStyle = {
+  position: 'absolute',
   width: SCREEN_WIDTH,
   height: SCREEN_HEIGHT,
   resizeMode: 'cover',

@@ -1,7 +1,7 @@
 import React from "react"
 import { NativeStackScreenProps, createNativeStackNavigator } from "@react-navigation/native-stack"
 import {
-  ProjectsDetailsScreen,
+  ProjectDetailsScreen,
   ProjectsScreen
 } from "app/screens"
 import { IProjectsData } from "app/screens/ProjectsScreen/ProjectsData"
@@ -32,7 +32,7 @@ export const ProjectStackNavigator = () => {
       }}
       initialRouteName="Projects">
       <Stack.Screen name="Projects" component={ProjectsScreen} />
-      <Stack.Screen name="ProjectsDetails" component={ProjectsDetailsScreen} />
+      <Stack.Screen name="ProjectsDetails" component={ProjectDetailsScreen} />
     </Stack.Navigator>
   )
 }

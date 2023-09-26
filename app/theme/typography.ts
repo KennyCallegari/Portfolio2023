@@ -9,6 +9,9 @@ import {
   Rubik_600SemiBold as rubikSemiBold,
   Rubik_700Bold as rubikBold,
 } from "@expo-google-fonts/rubik"
+import {
+  Macondo_400Regular as macondoRegular,
+} from "@expo-google-fonts/macondo"
 
 export const customFontsToLoad = {
   rubikLight,
@@ -16,6 +19,7 @@ export const customFontsToLoad = {
   rubikMedium,
   rubikSemiBold,
   rubikBold,
+  macondoRegular,
 }
 
 const fonts = {
@@ -26,6 +30,10 @@ const fonts = {
     medium: "rubikMedium",
     semiBold: "rubikSemiBold",
     bold: "rubikBold",
+  },
+  macondo: {
+    // Cross-platform Google font.
+    normal: "macondoRegular",
   },
   helveticaNeue: {
     // iOS only font.
