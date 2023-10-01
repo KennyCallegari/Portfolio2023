@@ -76,7 +76,7 @@ export const ProjectsPreview: FC<IProjectsPreviewProps> = function ProjectsPrevi
             sharedTransitionTag={`image${item.id}`}
             sharedTransitionStyle={transition}
             source={{ uri: item.imageSource }}
-            style={[$animatedImage, $image]}
+            style={[$image, $animatedImage]}
             resizeMode='cover'
           />
         </View>
@@ -86,7 +86,7 @@ export const ProjectsPreview: FC<IProjectsPreviewProps> = function ProjectsPrevi
           {item.appName}
         </Animated.Text>
 
-        <Animated.View style={[$date, $animatedDateText]} entering={FadeInDown.duration(500).delay(700)}>
+        <Animated.View style={[$date, $animatedDateText]} entering={FadeInDown.duration(500).delay(800)}>
           <Text text={item.date} color="neutral100" weight="semiBold" />
         </Animated.View>
 
@@ -133,7 +133,7 @@ const $image: ImageStyle = {
 
 const $appName: TextStyle = {
   width: ITEM_WIDTH,
-  zIndex: 200,
+  zIndex: 1,
 
   position: 'absolute',
   top: SPACING,
@@ -150,4 +150,5 @@ const $date: TextStyle = {
   position: 'absolute',
   bottom: SPACING,
   left: SPACING,
+  zIndex: 1,
 }

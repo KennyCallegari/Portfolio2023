@@ -1,20 +1,21 @@
 import React from "react"
 import { ViewStyle, StyleSheet, ImageStyle, TextStyle, Dimensions, View } from "react-native"
+import Animated, { FadeIn, useSharedValue } from "react-native-reanimated"
+import { useSafeAreaInsets } from "react-native-safe-area-context"
+
 import { ProjectStackScreenProps } from "app/navigators"
 import { Icon, Screen } from "app/components"
+import { colors } from "app/theme"
+
 import {
-  IProjectDetailsData,
   IProjectsData,
   ITEM_WIDTH,
   SPACING,
-  rosarioData,
   transition,
   transitionText
 } from "./ProjectsData"
-import { colors } from "app/theme"
-import Animated, { FadeIn, useSharedValue } from "react-native-reanimated"
-import { useSafeAreaInsets } from "react-native-safe-area-context"
 import { ProjectDetailsItem } from "./ProjectDetailsItem"
+import { IProjectDetailsData } from "./ProjectDetailsData"
 
 interface ProjectDetailsScreenProps extends ProjectStackScreenProps<"ProjectsDetails"> {
   item: IProjectsData
@@ -68,7 +69,7 @@ const ProjectDetailsScreen = function ProjectDetailsScreen({ navigation, route }
       </Animated.Text>
 
       <View style={$list}>
-        {rosarioData.map(renderItem)}
+        {item.datas.map(renderItem)}
       </View>
       
       <Animated.Image

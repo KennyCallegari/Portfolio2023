@@ -2,14 +2,9 @@ import React from "react"
 import { TextStyle, View, ViewStyle, StyleSheet, Image } from "react-native"
 
 import { colors, spacing } from "app/theme"
-
-import {
-  IMAGE_WIDTH,
-  IProjectDetailsData,
-  aspectRatio,
-} from "./ProjectsData"
 import { StoreBadge, Text } from "app/components"
 
+import { IMAGE_WIDTH, IProjectDetailsData, aspectRatio } from "./ProjectDetailsData"
 
 interface IProjectDetailsCardProps {
   item: IProjectDetailsData,
@@ -19,7 +14,6 @@ const ProjectDetailsCard = (
   props: IProjectDetailsCardProps
 ) => {
   const { item } = props;
-
 
   // --------- CASE - LINKS CARD -----------
   if (item.iosLink) {
@@ -53,7 +47,9 @@ const ProjectDetailsCard = (
             </View>
           </View>
         </View>
-        <Text text={item.appName} style={$title} />
+        <View style={$titleContainer}>
+          <Text text={item.appName} style={$title} />
+        </View>
       </View>
     )
   }
@@ -72,7 +68,9 @@ const ProjectDetailsCard = (
             resizeMode="contain"
           />
         </View>
-        <Text text={item.title} style={$title} />
+        <View style={$titleContainer}>
+          <Text text={item.title} style={$title} />
+        </View>
       </View>
     )
   }
@@ -135,7 +133,6 @@ const $innerContainer: ViewStyle = {
   borderColor: colors.palette.tarotYellow,
 }
 
-
 const $fullInnerContainer: ViewStyle = {
   ...StyleSheet.absoluteFillObject,
   justifyContent: "center",
@@ -158,12 +155,17 @@ const $title: TextStyle = {
   lineHeight: 28,
   textTransform: 'uppercase',
   fontFamily: 'macondoRegular',
-  position: 'absolute',
-  bottom: 16,
-  left: 0,
-  right: 0,
   textAlign: 'center',
   color: colors.palette.tarotBlue,
+}
+
+const $titleContainer: TextStyle = {
+  position: 'absolute',
+  bottom: 0,
+  left: 0,
+  right: 0,
+  height: 60,
+  justifyContent: 'center'
 }
 
 const $description: TextStyle = {

@@ -21,7 +21,7 @@ export const ProjectsScreen: FC<ProjectsScreenProps> = observer(function Project
 
   const onMomentumScrollEnd = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
     const _scrollX = event.nativeEvent.contentOffset.x;
-    const index = Math.round((_scrollX) / ITEM_WIDTH);
+    const index = Math.round(_scrollX / ITEM_WIDTH);
 
     setVisibleIndex(index)
   };

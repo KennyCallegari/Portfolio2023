@@ -47,7 +47,7 @@ export const ContactScreen: FC<ContactScreenProps> = observer(function ContactSc
         return
       }
       if (medium === 'linkedin') {
-        await Linking.openURL('https://www.linkedin.com/in/kenny-callegari-4b9180281/')
+        await Linking.openURL('https://www.linkedin.com/in/kenny-callegari/')
         return
       }
       if (medium === 'whatsapp') {
