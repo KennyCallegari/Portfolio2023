@@ -61,14 +61,7 @@ function App(props: AppProps) {
   } = useNavigationPersistence(storage, NAVIGATION_PERSISTENCE_KEY)
 
   const [areFontsLoaded] = useFonts(customFontsToLoad)
-  const [areImagesLoaded] = useStoreAssets([
-    require('../assets/assetsToLoadAtStart/rosario-background.png'),
-    require('../assets/assetsToLoadAtStart/meditatio-background.png'),
-    require('../assets/assetsToLoadAtStart/mister-good-coffee-background.png'),
-    require('../assets/assetsToLoadAtStart/compani-background.png'),
-    require('../assets/assetsToLoadAtStart/compani-outils-background.png'),
-    require('../assets/assetsToLoadAtStart/ector-background.png'),
-  ])
+  const [areImagesLoaded] = useStoreAssets()
 
   const { rehydrated } = useInitialRootStore((rootStore: RootStore) => {
     // This runs after the root store has been initialized and rehydrated.
