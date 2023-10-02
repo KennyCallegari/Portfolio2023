@@ -48,7 +48,7 @@ export const ProjectsScreen: FC<ProjectsScreenProps> = observer(function Project
       safeAreaEdges={["bottom", "top"]}
       contentContainerStyle={$screen}
     >
-      <Text style={$title} text="Mes projets" size="xxl" weight="semiBold" color="blue800" />
+      <Text style={$title} tx="projectScreen.title" size="xxl" weight="semiBold" color="blue800" />
       <Animated.ScrollView
         ref={scrollViewRef}
         horizontal

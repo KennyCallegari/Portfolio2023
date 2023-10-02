@@ -8,49 +8,47 @@ export const ectorData: IProjectDetailsData[] = [
   },
   {
     id: 10,
-    title: "Liens",
+    title: "projectDetailsScreen.fifthCardTitle",
     image: require("../../../../assets/images/tarot-Android.png")
   },
   {
     id: 9,
-    description: "Victor Duprez - CTO\n\nvictor@ectorparking.com",
+    description: "projectDetailsScreen.ectorContact"
   },
   {
     id: 8,
-    title: "Contacts",
+    title: "projectDetailsScreen.fourthTitleCard",
     image: require("../../../../assets/images/tarot-Apple.png")
   },
   {
     id: 7,
-    description: "React • Typescript • Redux • GraphQL • React-Native • PHP Symphony • Docker",
+    description: "projectDetailsScreen.ectorTechnologies"
   },
   {
     id: 6,
-    title: "Technologies",
+    title: "projectDetailsScreen.thirdTitleCard",
     image: require("../../../../assets/images/tarot-magician.png")
   },
   {
     id: 5,
-    description: "J'étais développeur junior dans une équipe de 12 personnes"
-      + " (développeurs / product owner / designer / data analyst).",
+    description: "projectDetailsScreen.ectorMyRole"
   },
   {
     id: 4,
-    title: "Mon rôle",
+    title: "projectDetailsScreen.secondTitleCard",
     image: require("../../../../assets/images/tarot-queen.png")
   },
   {
     id: 3,
-    description: "Elle offre 3 services : une web-app, une application mobile pour les clients"
-      + " et une application mobile pour les voituriers.",
+    description: "projectDetailsScreen.ectorProjectTwo"
   },
   {
     id: 2,
-    description: "Ector est une start-up offrant un service de voituriers dans les aéroports et les gares.",
+    description: "projectDetailsScreen.ectorProject"
   },
   {
     id: 1,
-    title: "Le projet",
+    title: "projectDetailsScreen.firstTitleCard",
     image: require("../../../../assets/images/tarot-king.png")
   },
   {

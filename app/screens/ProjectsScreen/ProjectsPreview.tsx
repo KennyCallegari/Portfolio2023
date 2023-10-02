@@ -87,7 +87,7 @@ export const ProjectsPreview: FC<IProjectsPreviewProps> = function ProjectsPrevi
         </Animated.Text>
 
         <Animated.View style={[$date, $animatedDateText]} entering={FadeInDown.duration(500).delay(800)}>
-          <Text text={item.date} color="neutral100" weight="semiBold" />
+          <Text tx={item.date} color="neutral100" weight="semiBold" />
         </Animated.View>
 
       </Pressable>

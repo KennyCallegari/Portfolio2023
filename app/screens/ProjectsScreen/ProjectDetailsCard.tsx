@@ -69,7 +69,7 @@ const ProjectDetailsCard = (
           />
         </View>
         <View style={$titleContainer}>
-          <Text text={item.title} style={$title} />
+          <Text tx={item.title} style={$title} />
         </View>
       </View>
     )
@@ -81,7 +81,7 @@ const ProjectDetailsCard = (
     <View style={$outercontainer}>
       <View style={$fullBackgroundContainer}>
         <View style={$fullInnerContainer}>
-          <Text text={item.description} style={$description} />
+          <Text tx={item.description} style={$description} />
         </View>
       </View>
     </View>

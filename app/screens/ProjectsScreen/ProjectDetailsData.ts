@@ -1,10 +1,11 @@
 /* eslint-disable max-len */
+import { TxKeyPath } from "app/i18n";
 import { Dimensions, ImageSourcePropType } from "react-native";
 
 export interface IProjectDetailsData {
   id: number,
-  title?: string,
-  description?: string,
+  title?: TxKeyPath,
+  description?: TxKeyPath,
   image?: ImageSourcePropType,
   iosLink?: string,
   androidLink?: string,
