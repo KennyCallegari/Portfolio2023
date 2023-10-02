@@ -77,7 +77,7 @@ export const OnBoardingButton: FC<IOnBoardingButtonProps> = function OnBoardingB
 
     if (isLastScreen) {
       userStore.setProp("hasSeenOnBoarding", true)
-      return navigate("Main", { screen: "Projects" })
+      return navigate("Main", { screen: "ProjectStackNavigator" })
     }
     
     return props.flatListRef.current?.scrollToIndex({ index: props.flatListIndex.value + 1 })

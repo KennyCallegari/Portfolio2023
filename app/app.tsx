@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 /* eslint-disable import/first */
 /**
  * Welcome to the main entry point of the app. In this file, we'll
@@ -25,7 +26,8 @@ import * as Linking from "expo-linking"
 import * as Localization from "expo-localization"
 import i18n from "i18n-js"
 import Toast from 'react-native-toast-message';
-import { RootStore, useInitialRootStore } from "./models"
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { RootStore, useInitialRootStore, useStoreAssets } from "./models"
 import { AppNavigator, useNavigationPersistence } from "./navigators"
 import { ErrorBoundary } from "./screens/ErrorScreen/ErrorBoundary"
 import * as storage from "./utils/storage"
@@ -59,6 +61,7 @@ function App(props: AppProps) {
   } = useNavigationPersistence(storage, NAVIGATION_PERSISTENCE_KEY)
 
   const [areFontsLoaded] = useFonts(customFontsToLoad)
+  const [areImagesLoaded] = useStoreAssets()
 
   const { rehydrated } = useInitialRootStore((rootStore: RootStore) => {
     // This runs after the root store has been initialized and rehydrated.
@@ -79,7 +82,7 @@ function App(props: AppProps) {
   // In iOS: application:didFinishLaunchingWithOptions:
   // In Android: https://stackoverflow.com/a/45838109/204044
   // You can replace with your own loading component if you wish.
-  if (!rehydrated || !isNavigationStateRestored || !areFontsLoaded) return null
+  if (!rehydrated || !isNavigationStateRestored || !areFontsLoaded || !areImagesLoaded) return null
 
   const linking = {
     prefixes: [prefix],
@@ -90,16 +93,18 @@ function App(props: AppProps) {
   return (
     <>
       <SafeAreaProvider initialMetrics={initialWindowMetrics}>
-        <ErrorBoundary catchErrors={Config.catchErrors}>
-          <AppNavigator
-            linking={linking}
-            initialState={initialNavigationState}
-            onStateChange={onNavigationStateChange}
-          />
-        </ErrorBoundary>
+        <GestureHandlerRootView style={{ flex: 1 }}>
+          <ErrorBoundary catchErrors={Config.catchErrors}>
+            <AppNavigator
+              linking={linking}
+              initialState={initialNavigationState}
+              onStateChange={onNavigationStateChange}
+            />
+          </ErrorBoundary>
 
-        {/* Toast should be last */}
-        <Toast config={toastConfig} />
+          {/* Toast should be last */}
+          <Toast config={toastConfig} />
+        </GestureHandlerRootView>
       </SafeAreaProvider>
     </>
   )
