@@ -8,54 +8,51 @@ export const rosarioData: IProjectDetailsData[] = [
   },
   {
     id: 11,
-    title: "Liens",
+    title: "projectDetailsScreen.fifthCardTitle",
     image: require("../../../../assets/images/tarot-Android.png")
   },
   {
     id: 10,
-    description: "Romain Delenda - Chef de projet\n\nromain@hozana.org",
+    description: "projectDetailsScreen.rosarioContact",
   },
   {
     id: 9,
-    title: "Contacts",
+    title: "projectDetailsScreen.fourthTitleCard",
     image: require("../../../../assets/images/tarot-Apple.png")
   },
   {
     id: 8,
-    description: "React Native • Typescript • TanStack Query • Axios • Firebase • luxon • Reanimated • Track Player",
+    description: "projectDetailsScreen.rosarioTechnologies",
   },
   {
     id: 7,
-    title: "Technologies",
+    title: "projectDetailsScreen.thirdTitleCard",
     image: require("../../../../assets/images/tarot-magician.png")
   },
   {
     id: 6,
-    description: "Je développe les fonctionnalités avec un développeur back-end, je participe à la "
-    + "conception de la roadmap et je déploie l'application à chaque fin de sprint.",
+    description: "projectDetailsScreen.rosarioMyRoleTwo",
   },
   {
     id: 5,
-    description: "Je suis l'unique développeur front de Rosario. Je m'occupe donc aussi bien du développement que "
-    + "de la gestion du projet.",
+    description: "projectDetailsScreen.rosarioMyRole",
   },
   {
     id: 4,
-    title: "Mon rôle",
+    title: "projectDetailsScreen.secondTitleCard",
     image: require("../../../../assets/images/tarot-queen.png")
   },
   {
     id: 3,
-    description: "Elle contient une messagerie de groupe, un lecteur audio pour prier le chapelet seul, une gestion des"
-      + " notifications ainsi qu'une large bibliothèque de svg.",
+    description: "projectDetailsScreen.rosarioProjectTwo",
   },
   {
     id: 2,
-    description: "Rosario est une application qui permet à un groupe de 5 personnes de prier le Rosaire Vivant.",
+    description: "projectDetailsScreen.rosarioProject",
   },
   {
     id: 1,
-    title: "Le projet",
+    title: "projectDetailsScreen.firstTitleCard",
     image: require("../../../../assets/images/tarot-king.png")
   },
   {

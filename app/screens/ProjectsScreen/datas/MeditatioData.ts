@@ -8,48 +8,47 @@ export const meditatioData: IProjectDetailsData[] = [
   },
   {
     id: 10,
-    title: "Liens",
+    title: "projectDetailsScreen.fifthCardTitle",
     image: require("../../../../assets/images/tarot-Android.png")
   },
   {
     id: 9,
-    description: "Romain Delenda - Chef de projet\n\nromain@hozana.org",
+    description: "projectDetailsScreen.meditatioContact",
   },
   {
     id: 8,
-    title: "Contacts",
+    title: "projectDetailsScreen.fourthTitleCard",
     image: require("../../../../assets/images/tarot-Apple.png")
   },
   {
     id: 7,
-    description: "React Native • Expo • Typescript • Track Player • TanStack Query • moment • Sentry • mmkv • Adjust",
+    description: "projectDetailsScreen.meditatioTechnologies",
   },
   {
     id: 6,
-    title: "Technologies",
+    title: "projectDetailsScreen.thirdTitleCard",
     image: require("../../../../assets/images/tarot-magician.png")
   },
   {
     id: 5,
-    description: "J'ai travaillé à l'amélioration du lecteur audio, notamment pour lancer 2 pistes audios en même" 
-      + " temps et sur l'amélioration des performances générales de l'application.",
+    description: "projectDetailsScreen.meditatioMyRole",
   },
   {
     id: 4,
-    title: "Mon rôle",
+    title: "projectDetailsScreen.secondTitleCard",
     image: require("../../../../assets/images/tarot-queen.png")
   },
   {
     id: 3,
-    description: "Elle contient un lecteur audio avancé qui est au centre de l'expérience utilisateur.",
+    description: "projectDetailsScreen.meditatioProjectTwo",
   },
   {
     id: 2,
-    description: "Meditatio est une application qui permet d'écouter des audios de méditations guidées.",
+    description: "projectDetailsScreen.meditatioProject",
   },
   {
     id: 1,
-    title: "Le projet",
+    title: "projectDetailsScreen.firstTitleCard",
     image: require("../../../../assets/images/tarot-king.png")
   },
   {

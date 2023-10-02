@@ -8,34 +8,34 @@ export const misterGoodCoffeeData: IProjectDetailsData[] = [
   },
   {
     id: 8,
-    title: "Liens",
+    title: "projectDetailsScreen.fifthCardTitle",
     image: require("../../../../assets/images/tarot-Android.png")
   },
   {
     id: 7,
-    description: "Expo • Typescript • Google Maps API • Gesture Handler",
+    description: "projectDetailsScreen.misterGoodCoffeeTechnologies"
   },
   {
     id: 6,
-    title: "Technologies",
+    title: "projectDetailsScreen.thirdTitleCard",
     image: require("../../../../assets/images/tarot-magician.png")
   },
   {
     id: 5,
-    description: "J'ai créé cette application en quelques heures pour partager mes cafés préférés à mes amis.",
+    description: "projectDetailsScreen.misterGoodCoffeeMyRole"
   },
   {
     id: 4,
-    title: "Mon rôle",
+    title: "projectDetailsScreen.secondTitleCard",
     image: require("../../../../assets/images/tarot-queen.png")
   },
   {
     id: 2,
-    description: "Mister Good Coffee est une application qui permet de trouver des bons cafés autour de soi.",
+    description: "projectDetailsScreen.misterGoodCoffeeProject"
   },
   {
     id: 1,
-    title: "Le projet",
+    title: "projectDetailsScreen.firstTitleCard",
     image: require("../../../../assets/images/tarot-king.png")
   },
   {

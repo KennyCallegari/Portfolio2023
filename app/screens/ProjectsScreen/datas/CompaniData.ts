@@ -8,48 +8,47 @@ export const companiData: IProjectDetailsData[] = [
   },
   {
     id: 10,
-    title: "Liens",
+    title: "projectDetailsScreen.fifthCardTitle",
     image: require("../../../../assets/images/tarot-Android.png")
   },
   {
     id: 9,
-    description: "Sophie Moustard - CTO\n\nsophie@compani.fr",
+    description: "projectDetailsScreen.companiContact",
   },
   {
     id: 8,
-    title: "Contacts",
+    title: "projectDetailsScreen.fourthTitleCard",
     image: require("../../../../assets/images/tarot-Apple.png")
   },
   {
     id: 7,
-    description: "Vue.js • Quasar • React Native • Redux • Node.js • MongoDB • Heroku • Postman",
+    description: "projectDetailsScreen.companiTechnologies",
   },
   {
     id: 6,
-    title: "Technologies",
+    title: "projectDetailsScreen.thirdTitleCard",
     image: require("../../../../assets/images/tarot-magician.png")
   },
   {
     id: 5,
-    description: "J'étais aussi développeur lead pour l'application mobile Compani.",
+    description: "projectDetailsScreen.companiMyRoleTwo",
   },
   {
     id: 4,
-    description: "J'étais développeur full stack front-end, back-end et mobile dans une équipe de 6 développeurs.",
+    description: "projectDetailsScreen.companiMyRole",
   },
   {
     id: 3,
-    title: "Mon rôle",
+    title: "projectDetailsScreen.secondTitleCard",
     image: require("../../../../assets/images/tarot-queen.png")
   },
   {
     id: 2,
-    description: "Compani est une entreprise qui propose des formations pour les acteurs de l'aide et du soin"
-      +", notamment les structures d’aide à domicile.",
+    description: "projectDetailsScreen.companiProject",
   },
   {
     id: 1,
-    title: "Le projet",
+    title: "projectDetailsScreen.firstTitleCard",
     image: require("../../../../assets/images/tarot-king.png")
   },
   {

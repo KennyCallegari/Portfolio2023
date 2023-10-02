@@ -8,47 +8,47 @@ export const companiOutilsData: IProjectDetailsData[] = [
   },
   {
     id: 10,
-    title: "Liens",
+    title: "projectDetailsScreen.fifthCardTitle",
     image: require("../../../../assets/images/tarot-Android.png")
   },
   {
     id: 9,
-    description: "Sophie Moustard - CTO\n\nsophie@compani.fr",
+    description: "projectDetailsScreen.companiOutilsContact"
   },
   {
     id: 8,
-    title: "Contacts",
+    title: "projectDetailsScreen.fourthTitleCard",
     image: require("../../../../assets/images/tarot-Apple.png")
   },
   {
     id: 7,
-    description: "React Native • Expo • Barcode Scanner • Axios • Sinon • Typescript • Jest",
+    description: "projectDetailsScreen.companiOutilsTechnologies"
   },
   {
     id: 6,
-    title: "Technologies",
+    title: "projectDetailsScreen.thirdTitleCard",
     image: require("../../../../assets/images/tarot-magician.png")
   },
   {
     id: 5,
-    description: "J'étais lead développeur dans une équipe de 3 développeurs sur le projet.",
+    description: "projectDetailsScreen.companiOutilsMyRole"
   },
   {
     id: 4,
-    title: "Mon rôle",
+    title: "projectDetailsScreen.secondTitleCard",
     image: require("../../../../assets/images/tarot-queen.png")
   },
   {
     id: 3,
-    description: "Elle leur permet de gérer leur emploi du temps, leurs bénéficaires, leur paye, ...",
+    description: "projectDetailsScreen.companiOutilsProjectTwo"
   },
   {
     id: 2,
-    description: "Compani Outils est une application mobile ERP pour les auxiliaires de vie.",
+    description: "projectDetailsScreen.companiOutilsProject"
   },
   {
     id: 1,
-    title: "Le projet",
+    title: "projectDetailsScreen.firstTitleCard",
     image: require("../../../../assets/images/tarot-king.png")
   },
   {

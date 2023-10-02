@@ -6,11 +6,12 @@ import { Dimensions } from "react-native";
 import { Easing, SharedTransition, withTiming } from "react-native-reanimated";
 import { meditatioData, misterGoodCoffeeData, rosarioData, companiOutilsData, ectorData, companiData } from "./datas";
 import { IProjectDetailsData } from "./ProjectDetailsData";
+import { TxKeyPath } from "app/i18n";
 
 export interface IProjectsData {
   id: number,
   appName: string,
-  date: string,
+  date: TxKeyPath,
   imageSource?: string,
   color: string,
   datas: IProjectDetailsData[]
@@ -60,7 +61,7 @@ export const useData = ():IProjectsData[] => {
     {
       id: 1,
       appName: "Rosario",
-      date: "Avril 2022 - Aujourd'hui",
+      date: "projectScreen.rosarioDate",
       color: colors.palette.lavender600,
       imageSource: assetsStore.projectAssets.rosarioBackground,
       datas: rosarioData,
@@ -68,7 +69,7 @@ export const useData = ():IProjectsData[] => {
     {
       id: 2,
       appName: "Meditatio",
-      date: "Février 2023 - Avril 2023",
+      date: "projectScreen.meditatioDate",
       color: colors.palette.lavender600,
       imageSource: assetsStore.projectAssets.meditatioBackground,
       datas: meditatioData,
@@ -76,7 +77,7 @@ export const useData = ():IProjectsData[] => {
     {
       id: 3,
       appName: "Mister Good Coffee",
-      date: "Septembre 2021 - Mai 2022",
+      date: "projectScreen.misterGoodCoffeeDate",
       color: colors.palette.lavender600,
       imageSource: assetsStore.projectAssets.misterGoodCoffeeBackground,
       datas: misterGoodCoffeeData,
@@ -84,7 +85,7 @@ export const useData = ():IProjectsData[] => {
     {
       id: 4,
       appName: "Compani",
-      date: "Septembre 2020 - Avril 2022",
+      date: "projectScreen.companiDate",
       color: colors.palette.lavender600,
       imageSource: assetsStore.projectAssets.companiBackground,
       datas: companiData,
@@ -92,7 +93,7 @@ export const useData = ():IProjectsData[] => {
     {
       id: 5,
       appName: "Compani Outils",
-      date: "Septembre 2020 - Avril 2022",
+      date: "projectScreen.companiOutilsDate",
       color: colors.palette.lavender600,
       imageSource: assetsStore.projectAssets.companiOutilsBackground,
       datas: companiOutilsData,
@@ -100,7 +101,7 @@ export const useData = ():IProjectsData[] => {
     {
       id: 6,
       appName: "Ector",
-      date: "Septembre 2019 - Août 2020",
+      date: "projectScreen.ectorDate",
       color: colors.palette.lavender600,
       imageSource: assetsStore.projectAssets.ectorBackground,
       datas: ectorData,
