@@ -61,7 +61,7 @@ const AppStack = observer(function AppStack() {
       initialRouteName={hasSeenOnBoarding ? "Main" : "OnBoarding"} // @demo remove-current-line
     >
       <Stack.Screen name="OnBoarding" component={Screens.OnBoardingScreen} />
-      <Stack.Screen name="Main" component={MainNavigator} />
+      <Stack.Screen name="Main" component={MainNavigator} options={{ gestureEnabled: false }} />
       {/* IGNITE_GENERATOR_ANCHOR_APP_STACK_SCREENS */}
     </Stack.Navigator>
   )

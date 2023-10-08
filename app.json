@@ -1,11 +1,11 @@
 {
-  "name": "PortfolioExpo2023",
+  "name": "Portfolio Expo 2023",
   "displayName": "PortfolioExpo2023",
   "expo": {
-    "name": "PortfolioExpo2023",
+    "name": "Portfolio Expo 2023",
     "slug": "PortfolioExpo2023",
     "scheme": "portfolioexpo2023",
-    "version": "1.0.0",
+    "version": "1.0.4",
     "orientation": "portrait",
     "icon": "./assets/images/app-icon-all.png",
     "splash": {
@@ -14,7 +14,8 @@
       "backgroundColor": "#1f2f30"
     },
     "updates": {
-      "fallbackToCacheTimeout": 0
+      "fallbackToCacheTimeout": 0,
+      "url": "https://u.expo.dev/f05efd0f-415e-4179-ad05-57c088fce00b"
     },
     "jsEngine": "hermes",
     "assetBundlePatterns": [
@@ -23,6 +24,7 @@
     "android": {
       "icon": "./assets/images/app-icon-android-legacy.png",
       "package": "com.portfolioexpo2023",
+      "versionCode": 5,
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/app-icon-android-adaptive-foreground.png",
         "backgroundImage": "./assets/images/app-icon-android-adaptive-background.png"
@@ -37,6 +39,7 @@
       "icon": "./assets/images/app-icon-ios.png",
       "supportsTablet": true,
       "bundleIdentifier": "com.portfolioexpo2023",
+      "buildNumber": "5",
       "splash": {
         "image": "./assets/images/splash-logo-ios-mobile.png",
         "tabletImage": "./assets/images/splash-logo-ios-tablet.png",
@@ -54,6 +57,15 @@
     },
     "plugins": [
       "expo-localization"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "f05efd0f-415e-4179-ad05-57c088fce00b"
+      }
+    },
+    "owner": "kennyledev",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    }
   }
 }

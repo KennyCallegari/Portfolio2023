@@ -1,0 +1,33 @@
+{
+  "cli": {
+    "version": ">= 5.2.0",
+    "promptToConfigurePushNotifications": false
+  },
+  "build": {
+    "development": {
+      "distribution": "internal",
+      "android": {
+        "gradleCommand": ":app:assembleDebug"
+      },
+      "ios": {
+        "buildConfiguration": "Debug"
+      }
+    },
+    "preview": {
+      "distribution": "internal"
+    },
+    "production": {}
+  },
+  "submit": {
+    "production": {
+      "ios": {
+        "appleId": "kenny.callegari@gmail.com",
+        "ascAppId": "124558908",
+        "appleTeamId": "FNTAS8WYRK"
+      },
+      "android": {
+        "serviceAccountKeyPath": "../../git/documents-importants/kenny-callegari-portfolio-2ea3390df885.json"
+      }
+    }
+  }
+}

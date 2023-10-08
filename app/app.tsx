@@ -27,7 +27,7 @@ import * as Localization from "expo-localization"
 import i18n from "i18n-js"
 import Toast from 'react-native-toast-message';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { RootStore, useInitialRootStore, useStoreAssets } from "./models"
+import { RootStore, storeAssets, useInitialRootStore } from "./models"
 import { AppNavigator, useNavigationPersistence } from "./navigators"
 import { ErrorBoundary } from "./screens/ErrorScreen/ErrorBoundary"
 import * as storage from "./utils/storage"
@@ -61,20 +61,23 @@ function App(props: AppProps) {
   } = useNavigationPersistence(storage, NAVIGATION_PERSISTENCE_KEY)
 
   const [areFontsLoaded] = useFonts(customFontsToLoad)
-  const [areImagesLoaded] = useStoreAssets()
 
-  const { rehydrated } = useInitialRootStore((rootStore: RootStore) => {
+  const { rehydrated } = useInitialRootStore(
+    async (rootStore: RootStore) => {
     // This runs after the root store has been initialized and rehydrated.
 
-    // change i18n locale to value selected by user on onboarding
-    i18n.locale = rootStore?.userStore?.locale || Localization.locale
+      // change i18n locale to value selected by user on onboarding
+      i18n.locale = rootStore?.userStore?.locale || Localization.locale
 
-    // If your initialization scripts run very fast, it's good to show the splash screen for just a bit longer to prevent flicker.
-    // Slightly delaying splash screen hiding for better UX; can be customized or removed as needed,
-    // Note: (vanilla Android) The splash-screen will not appear if you launch your app via the terminal or Android Studio. Kill the app and launch it normally by tapping on the launcher icon. https://stackoverflow.com/a/69831106
-    // Note: (vanilla iOS) You might notice the splash-screen logo change size. This happens in debug/development mode. Try building the app for release.
-    setTimeout(hideSplashScreen, 500)
-  })
+      // stores assets to load at start
+      await storeAssets(rootStore)
+
+      // If your initialization scripts run very fast, it's good to show the splash screen for just a bit longer to prevent flicker.
+      // Slightly delaying splash screen hiding for better UX; can be customized or removed as needed,
+      // Note: (vanilla Android) The splash-screen will not appear if you launch your app via the terminal or Android Studio. Kill the app and launch it normally by tapping on the launcher icon. https://stackoverflow.com/a/69831106
+      // Note: (vanilla iOS) You might notice the splash-screen logo change size. This happens in debug/development mode. Try building the app for release.
+      setTimeout(hideSplashScreen, 500)
+    })
 
   // Before we show the app, we have to wait for our state to be ready.
   // In the meantime, don't render anything. This will be the background
@@ -82,7 +85,7 @@ function App(props: AppProps) {
   // In iOS: application:didFinishLaunchingWithOptions:
   // In Android: https://stackoverflow.com/a/45838109/204044
   // You can replace with your own loading component if you wish.
-  if (!rehydrated || !isNavigationStateRestored || !areFontsLoaded || !areImagesLoaded) return null
+  if (!rehydrated || !isNavigationStateRestored || !areFontsLoaded) return null
 
   const linking = {
     prefixes: [prefix],

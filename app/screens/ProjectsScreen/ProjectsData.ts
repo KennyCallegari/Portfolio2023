@@ -63,7 +63,7 @@ export const useData = ():IProjectsData[] => {
       appName: "Rosario",
       date: "projectScreen.rosarioDate",
       color: colors.palette.lavender600,
-      imageSource: assetsStore.projectAssets.rosarioBackground,
+      imageSource: assetsStore?.projectAssets?.rosarioBackground,
       datas: rosarioData,
     },
     {
@@ -71,7 +71,7 @@ export const useData = ():IProjectsData[] => {
       appName: "Meditatio",
       date: "projectScreen.meditatioDate",
       color: colors.palette.lavender600,
-      imageSource: assetsStore.projectAssets.meditatioBackground,
+      imageSource: assetsStore?.projectAssets?.meditatioBackground,
       datas: meditatioData,
     },
     {
@@ -79,7 +79,7 @@ export const useData = ():IProjectsData[] => {
       appName: "Mister Good Coffee",
       date: "projectScreen.misterGoodCoffeeDate",
       color: colors.palette.lavender600,
-      imageSource: assetsStore.projectAssets.misterGoodCoffeeBackground,
+      imageSource: assetsStore?.projectAssets?.misterGoodCoffeeBackground,
       datas: misterGoodCoffeeData,
     },
     {
@@ -87,7 +87,7 @@ export const useData = ():IProjectsData[] => {
       appName: "Compani",
       date: "projectScreen.companiDate",
       color: colors.palette.lavender600,
-      imageSource: assetsStore.projectAssets.companiBackground,
+      imageSource: assetsStore?.projectAssets?.companiBackground,
       datas: companiData,
     },
     {
@@ -95,7 +95,7 @@ export const useData = ():IProjectsData[] => {
       appName: "Compani Outils",
       date: "projectScreen.companiOutilsDate",
       color: colors.palette.lavender600,
-      imageSource: assetsStore.projectAssets.companiOutilsBackground,
+      imageSource: assetsStore?.projectAssets?.companiOutilsBackground,
       datas: companiOutilsData,
     },
     {
@@ -103,7 +103,7 @@ export const useData = ():IProjectsData[] => {
       appName: "Ector",
       date: "projectScreen.ectorDate",
       color: colors.palette.lavender600,
-      imageSource: assetsStore.projectAssets.ectorBackground,
+      imageSource: assetsStore?.projectAssets?.ectorBackground,
       datas: ectorData,
     }
   ]
