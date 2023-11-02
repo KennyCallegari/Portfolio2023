@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-const en = {
+const fr = {
   // ------ COMMON ------
   common: {
     ok: "OK!",
@@ -108,5 +108,5 @@ const en = {
   },
 }
 
-export default en
-export type Translations = typeof en
+export default fr
+export type Translations = typeof fr

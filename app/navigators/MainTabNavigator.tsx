@@ -1,17 +1,20 @@
-import { BottomTabScreenProps, createBottomTabNavigator } from "@react-navigation/bottom-tabs"
-import { CompositeScreenProps } from "@react-navigation/native"
 import React from "react"
+import { ViewStyle } from "react-native"
 import Lottie from 'lottie-react-native'
-import { ContactScreen, RateMyAppScreen } from "../screens"
+import { CompositeScreenProps } from "@react-navigation/native"
+import { BottomTabScreenProps, createBottomTabNavigator } from "@react-navigation/bottom-tabs"
+
+import { ContactScreen, LabScreen, RateMyAppScreen } from "../screens"
+
 import { AppStackParamList, AppStackScreenProps } from "./AppNavigator"
 import { AnimatedTabBar } from "./AnimatedTabBar/AnimatedTabBar"
-import { ViewStyle } from "react-native"
 import { ProjectStackNavigator } from "./ProjectStackNavigator"
 
 export type MainTabParamList = {
   ProjectStackNavigator: undefined
   Contact: undefined
   RateMyApp: undefined
+  Lab: undefined
 }
 
 /**
@@ -26,7 +29,7 @@ AppStackScreenProps<keyof AppStackParamList>
 
 const Tab = createBottomTabNavigator<MainTabParamList>()
 
-export function MainNavigator() {
+export function MainTabNavigator() {
 
   return (
     <Tab.Navigator
@@ -57,6 +60,15 @@ export function MainNavigator() {
       <Tab.Screen
         name="RateMyApp"
         component={RateMyAppScreen}
+        options={{
+          // @ts-ignore
+          tabBarIcon: ({ ref }) => <Lottie ref={ref} loop={false}
+            source={require('../../assets/animations/wave-emoji.json')} style={$icon} />
+        }}
+      />
+      <Tab.Screen
+        name="Lab"
+        component={LabScreen}
         options={{
           // @ts-ignore
           tabBarIcon: ({ ref }) => <Lottie ref={ref} loop={false}

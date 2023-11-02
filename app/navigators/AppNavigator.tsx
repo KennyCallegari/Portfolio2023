@@ -1,9 +1,6 @@
-/**
- * The app navigator (formerly "AppNavigator" and "MainNavigator") is used for the primary
- * navigation flows of your app.
- * Generally speaking, it will contain an auth flow (registration, login, forgot password)
- * and a "main" flow which the user will use once logged in.
- */
+/*
+  * The app navigator is used for the primary navigation flows of your app.
+*/
 import {
   DarkTheme,
   DefaultTheme,
@@ -18,7 +15,7 @@ import * as Screens from "app/screens"
 import { colors } from "app/theme"
 import Config from "../config"
 import { navigationRef, useBackButtonHandler } from "./navigationUtilities"
-import { MainNavigator, MainTabParamList } from "./MainNavigator"
+import { MainTabNavigator, MainTabParamList } from "./MainTabNavigator"
 import { useStores } from "app/models"
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -61,7 +58,7 @@ const AppStack = observer(function AppStack() {
       initialRouteName={hasSeenOnBoarding ? "Main" : "OnBoarding"} // @demo remove-current-line
     >
       <Stack.Screen name="OnBoarding" component={Screens.OnBoardingScreen} />
-      <Stack.Screen name="Main" component={MainNavigator} options={{ gestureEnabled: false }} />
+      <Stack.Screen name="Main" component={MainTabNavigator} options={{ gestureEnabled: false }} />
       {/* IGNITE_GENERATOR_ANCHOR_APP_STACK_SCREENS */}
     </Stack.Navigator>
   )
