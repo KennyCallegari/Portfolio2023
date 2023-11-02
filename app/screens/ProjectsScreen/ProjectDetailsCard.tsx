@@ -1,5 +1,5 @@
 import React from "react"
-import { TextStyle, View, ViewStyle, StyleSheet, Image } from "react-native"
+import { TextStyle, View, ViewStyle, StyleSheet, Image, Platform } from "react-native"
 
 import { colors, spacing } from "app/theme"
 import { StoreBadge, Text } from "app/components"
@@ -21,8 +21,8 @@ const ProjectDetailsCard = (
       <View style={$outercontainer}>
         <View style={$fullBackgroundContainer}>
           <View style={$fullInnerContainer}>
-            <StoreBadge type="ios" href={item.iosLink} style={$badges} />
-            <StoreBadge type="android" href={item.androidLink} style={$badges} />
+            {Platform.OS === "ios" && <StoreBadge type="ios" href={item.iosLink} style={$badges} />}
+            {Platform.OS === "android" && <StoreBadge type="android" href={item.androidLink} style={$badges} />}
           </View>
         </View>
       </View>
