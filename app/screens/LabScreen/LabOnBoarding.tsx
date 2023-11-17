@@ -2,16 +2,20 @@ import Lottie from 'lottie-react-native'
 import React, { FC } from "react"
 import { Pressable, ViewStyle } from "react-native"
 import { SCREEN_WIDTH } from '../ProjectsScreen/ProjectDetailsScreen'
+import { useStores } from 'app/models'
 
-interface ILabOnBoardingProps {
-  setHasBeenTouched: (_: boolean) => void,
-}
+export const LabOnBoarding: FC = function LabOnBoarding() {
+  const { userStore } = useStores()
 
-export const LabOnBoarding: FC<ILabOnBoardingProps> = function LabOnBoarding({ setHasBeenTouched }) {
-  return <Pressable style={$container}
-    onPressIn={() => setHasBeenTouched(true)}>
-    <Lottie source={require('../../../assets/animations/drag-me-around.json')} autoPlay style={$lottie} />
-  </Pressable>
+  const onPressIn = () => {
+    userStore.setProp("hasSeenLabInstruction", true)
+  }
+
+  return (
+    <Pressable style={$container} onPressIn={onPressIn}>
+      <Lottie source={require('../../../assets/animations/drag-me-around.json')} autoPlay style={$lottie} />
+    </Pressable>
+  )
 }
 
 const $container: ViewStyle = {

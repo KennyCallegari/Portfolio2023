@@ -28,7 +28,8 @@
     "expo:android": "expo start --android",
     "expo:ios": "expo start --ios",
     "expo:web": "expo start --web",
-    "expo:clean": "expo start -c --go"
+    "expo:clean": "expo start -c --go",
+    "build": "yarn install && eas build --platform all && eas submit --platform ios --latest"
   },
   "overrides": {
     "react-error-overlay": "6.0.9"

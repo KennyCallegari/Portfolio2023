@@ -12,12 +12,12 @@ import { colors } from "app/theme"
 import { LabScreenCanvas } from "./LabScreenCanvas";
 import { LabLoader } from "./LabLoader";
 import { LabOnBoarding } from "./LabOnBoarding";
+import { useStores } from "app/models";
 
 interface LabScreenProps extends MainTabScreenProps<"Contact"> {}
 
 export const LabScreen: FC<LabScreenProps> = observer(function LabScreen() {
   const [isReady, setIsReady] = useState(false)
-  const [hasBeenTouched, setHasBeenTouched] = useState(false)
 
   const translateX = useSharedValue(0)
   const translateY = useSharedValue(0)
@@ -26,6 +26,8 @@ export const LabScreen: FC<LabScreenProps> = observer(function LabScreen() {
   const scaleOffset = useSharedValue(0.03)
 
   const iphoneRef = useRef<any>();
+
+  const { userStore: { hasSeenLabInstruction } } = useStores()
 
   const onPinchGesture = Gesture.Pinch()
   // keep track of offset because scale reset to 1 on every new pinch
@@ -103,7 +105,7 @@ export const LabScreen: FC<LabScreenProps> = observer(function LabScreen() {
   return (
     <Screen preset="fixed" contentContainerStyle={$container}>
       {!isReady && <LabLoader />}
-      {isReady && !hasBeenTouched && <LabOnBoarding setHasBeenTouched={setHasBeenTouched} />}
+      {isReady && !hasSeenLabInstruction && <LabOnBoarding />}
       <GestureDetector gesture={onGestureEvent}>
         <Canvas>
           <LabScreenCanvas iphoneRef={iphoneRef} />   
