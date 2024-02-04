@@ -25,7 +25,7 @@ interface IDuolingoButtonProps {
 
 /*
   Makes the external apparence of a View looks like a button from Duolingo
-  with a satifying press animation
+  with a satisfying press animation
 */
 export function DuolingoButton(props: IDuolingoButtonProps) {
   const {

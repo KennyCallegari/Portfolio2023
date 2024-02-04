@@ -5,7 +5,7 @@ import { TxKeyPath } from 'app/i18n';
 import { colors, spacing } from 'app/theme';
 import ToastIconContainer from 'assets/svg/ToastIconContainer';
 import { Text } from 'app/components';
-import LiquidShape from '../../../assets/svg/toast-fail-liquid-shape.svg'
+import LiquidShape from 'assets/svg/toast-fail-liquid-shape.svg'
 import { FontAwesome5 } from '@expo/vector-icons';
 
 export interface IErrorToastProps {
