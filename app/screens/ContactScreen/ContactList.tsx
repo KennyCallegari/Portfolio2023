@@ -7,7 +7,6 @@ import { spacing } from "app/theme"
 import { IData, ITEM_HEIGHT, SCREEN_HEIGHT, data } from "./ContactData"
 import { ContactListItem } from "./ContactListItem"
 
-
 interface IContactListProps {
   color: string,
   showText: boolean,

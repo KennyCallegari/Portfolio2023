@@ -55,7 +55,7 @@ const AppStack = observer(function AppStack() {
   return (
     <Stack.Navigator
       screenOptions={{ headerShown: false, navigationBarColor: colors.background }}
-      initialRouteName={hasSeenOnBoarding ? "Main" : "OnBoarding"} // @demo remove-current-line
+      initialRouteName={hasSeenOnBoarding ? "Main" : "OnBoarding"}
     >
       <Stack.Screen name="OnBoarding" component={Screens.OnBoardingScreen} />
       <Stack.Screen name="Main" component={MainTabNavigator} options={{ gestureEnabled: false }} />
