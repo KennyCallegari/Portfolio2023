@@ -1,19 +1,12 @@
 {
-  "name": "Portfolio Expo 2023",
-  "displayName": "PortfolioExpo2023",
   "expo": {
     "name": "Portfolio Expo 2023",
     "slug": "PortfolioExpo2023",
     "scheme": "portfolioexpo2023",
     "version": "1.0.5",
-    "newArchEnabled": true,
+    "newArchEnabled": false,
     "orientation": "portrait",
-    "icon": "./assets/images/app-icon-all.png",
-    "splash": {
-      "image": "./assets/images/splash-logo-all.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#1f2f30"
-    },
+    "icon": "./assets/images/app-icon.png",
     "updates": {
       "fallbackToCacheTimeout": 0,
       "url": "https://u.expo.dev/f05efd0f-415e-4179-ad05-57c088fce00b"
@@ -23,43 +16,29 @@
       "**/*"
     ],
     "android": {
-      "icon": "./assets/images/app-icon-android-legacy.png",
       "package": "com.portfolioexpo2023",
-      "versionCode": 6,
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/images/app-icon-android-adaptive-foreground.png",
-        "backgroundImage": "./assets/images/app-icon-android-adaptive-background.png"
-      },
-      "splash": {
-        "image": "./assets/images/splash-logo-android-universal.png",
-        "resizeMode": "contain",
-        "backgroundColor": "#1f2f30"
-      }
+      "versionCode": 6
     },
     "ios": {
-      "icon": "./assets/images/app-icon-ios.png",
       "supportsTablet": true,
       "bundleIdentifier": "com.portfolioexpo2023",
-      "buildNumber": "6",
-      "splash": {
-        "image": "./assets/images/splash-logo-ios-mobile.png",
-        "tabletImage": "./assets/images/splash-logo-ios-tablet.png",
-        "resizeMode": "contain",
-        "backgroundColor": "#1f2f30"
-      }
+      "buildNumber": "6"
     },
     "web": {
-      "favicon": "./assets/images/app-icon-web-favicon.png",
-      "splash": {
-        "image": "./assets/images/splash-logo-web.png",
-        "resizeMode": "contain",
-        "backgroundColor": "#1f2f30"
-      }
+      "favicon": "./assets/images/app-icon-web-favicon.png"
     },
     "plugins": [
       "expo-localization",
       "expo-asset",
-      "expo-font"
+      "expo-font",
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#1f2f30",
+          "image": "./assets/images/splash-icon.png",
+          "imageWidth": 200
+        }
+      ]
     ],
     "extra": {
       "eas": {
